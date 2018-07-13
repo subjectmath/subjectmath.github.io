@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="1.认识flex布局阮大大的博客地址 语法篇http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html?utm_source=tuicool 实践篇http://www.ruanyifeng.com/blog/2015/07/flex-examples.html 1.容器默认主轴（main axis）和垂直的交叉轴（cross axis）2.最">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-13T18:12:30.532Z">
+<meta property="og:updated_time" content="2018-07-13T18:19:52.516Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="second-day">
 <meta name="twitter:description" content="1.认识flex布局阮大大的博客地址 语法篇http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html?utm_source=tuicool 实践篇http://www.ruanyifeng.com/blog/2015/07/flex-examples.html 1.容器默认主轴（main axis）和垂直的交叉轴（cross axis）2.最">
@@ -97,12 +97,14 @@
 .col-md-   &gt;=992px      //  middle
 .col-lg-   &gt;=1200px     //  large
 //后面加上数字t，表示占了t/12的宽度，12宽度不够容下的自动浮动到下一行
-</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 3.事件冒泡，事件捕获和事件委托</span><br><span class="line">#### 1.事件冒泡</span><br><span class="line">事件从最小的元素的事件对应的操作开始执行，后由于冒泡，其父元素或祖先元素对应的操作再继续执行，即从里面往外面触发事件。</span><br><span class="line">#### 2.事件捕获</span><br><span class="line">事件从最外面的元素的事件对应的操作开始执行，后再逐渐深入，其子元素或孙元素对应的操作再继续执行，即从外面往里面触发事件</span><br></pre></td></tr></table></figure>
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># 3.事件冒泡，事件捕获和事件委托</span><br><span class="line">#### 1.事件冒泡</span><br><span class="line">事件从最小的元素的事件对应的操作开始执行，后由于冒泡，其父元素或祖先元素对应的操作再继续执行，即从里面往外面触发事件。</span><br><span class="line">#### 2.事件捕获</span><br><span class="line">事件从最外面的元素的事件对应的操作开始执行，后再逐渐深入，其子元素或孙元素对应的操作再继续执行，即从外面往里面触发事件</span><br></pre></td></tr></table></figure>
 <pre><code>//写一个三层div嵌套结构
-</code></pre><p>&lt;!doctype html&gt;</p>
-<p><html lang="en"></html></p>
-<p><head><br>    <meta charset="UTF-8"><br>    <title>Document</title><br>    <style><br>        *{<br>            margin: 0;<br>            padding: 0;<br>        }</p>
-<pre><code>    #grandpa{
+&lt;style&gt;
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    #grandpa{
         width: 150px;
         height: 150px;
         background-color: orange;
@@ -118,8 +120,7 @@
         background-color: gray;
     }
 &lt;/style&gt;
-</code></pre><p></head></p>
-<p><body><br>    <div id="grandpa"><br>        <div id="father"><br>            <div id="son"></div><br>        </div><br>    </div><br>    <script><br>        var grandpa = document.getElementById(‘grandpa’);<br>        var father = document.getElementById(‘father’);<br>        var son = document.getElementById(‘son’);</p>
+</code></pre><p><body><br>    <div id="grandpa"><br>        <div id="father"><br>            <div id="son"></div><br>        </div><br>    </div><br>    <script><br>        var grandpa = document.getElementById(‘grandpa’);<br>        var father = document.getElementById(‘father’);<br>        var son = document.getElementById(‘son’);</p>
 <pre><code>    // grandpa.onclick = function(event){
     //     alert(&apos;grandpa&apos;);
     // }//第一种写法
@@ -159,13 +160,13 @@
     //                            grandpa
 
 &lt;/script&gt;
-</code></pre><p></body><br></html><br><code>`</code></p>
+</code></pre><p></body><br><code>`</code></p>
 <h4 id="3-事件委托"><a href="#3-事件委托" class="headerlink" title="3.事件委托"></a>3.事件委托</h4><p>主要目的是为了减少浏览器对于dom的操作从而提高性能</p>
-</style></head></p>
+</script></body></p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/07/13/second-day/" data-id="cjjkavqfb0000o453i1l9kma1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/07/13/second-day/" data-id="cjjkb5bsx0001ho53emfzqf2p" class="article-share-link">Share</a>
       
       
     </footer>
