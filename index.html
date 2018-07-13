@@ -84,11 +84,86 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h1 id="1-认识flex布局"><a href="#1-认识flex布局" class="headerlink" title="1.认识flex布局"></a>1.认识flex布局</h1><p>阮大大的博客地址</p>
+<p>语法篇<br><a href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html?utm_source=tuicool" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html?utm_source=tuicool</a></p>
+<p>实践篇<br><a href="http://www.ruanyifeng.com/blog/2015/07/flex-examples.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2015/07/flex-examples.html</a></p>
+<h4 id="1-容器默认主轴（main-axis）和垂直的交叉轴（cross-axis）"><a href="#1-容器默认主轴（main-axis）和垂直的交叉轴（cross-axis）" class="headerlink" title="1.容器默认主轴（main axis）和垂直的交叉轴（cross axis）"></a>1.容器默认主轴（main axis）和垂直的交叉轴（cross axis）</h4><h4 id="2-最常用的属性"><a href="#2-最常用的属性" class="headerlink" title="2.最常用的属性"></a>2.最常用的属性</h4><p>1.justify-content属性设定了项目在主轴（水平）上的对齐方式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.box&#123;</span><br><span class="line">    justify-content: flex-start | flex end | center | space-around | space-between;</span><br><span class="line">    //这是在外层定义的属性</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>2.align-items属性设定了项目在交叉轴（垂直）上的对齐方式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.box&#123;</span><br><span class="line">    align-items: flex-start | flex end | center | space-around | space-between | stretch;</span><br><span class="line">    //这也是在外层定义的属性，相对于水平的多了个竖直拉伸stretch</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="2-了解bootstrap的实现原理"><a href="#2-了解bootstrap的实现原理" class="headerlink" title="2.了解bootstrap的实现原理"></a>2.了解bootstrap的实现原理</h1><h4 id="实现的基本原理是利用媒体查询，根据不同设备上的屏幕宽度的像素的不同使用不同的已定义好的类名进行不同的布局状态"><a href="#实现的基本原理是利用媒体查询，根据不同设备上的屏幕宽度的像素的不同使用不同的已定义好的类名进行不同的布局状态" class="headerlink" title="实现的基本原理是利用媒体查询，根据不同设备上的屏幕宽度的像素的不同使用不同的已定义好的类名进行不同的布局状态"></a>实现的基本原理是利用媒体查询，根据不同设备上的屏幕宽度的像素的不同使用不同的已定义好的类名进行不同的布局状态</h4><p>行（row）”必须包含在<figure class="highlight plain"><figcaption><span>```.container-fluid```（100% 宽度）中,即上一级div得设置这两个类名中的一个</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+<pre><code>.col-xs-   &lt;768px
+.col-sm-   &gt;=768px      //  small
+.col-md-   &gt;=992px      //  middle
+.col-lg-   &gt;=1200px     //  large
+//后面加上数字t，表示占了t/12的宽度，12宽度不够容下的自动浮动到下一行
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 3.事件冒泡，事件捕获和事件委托</span><br><span class="line">#### 1.事件冒泡</span><br><span class="line">事件从最小的元素的事件对应的操作开始执行，后由于冒泡，其父元素或祖先元素对应的操作再继续执行，即从里面往外面触发事件。</span><br><span class="line">#### 2.事件捕获</span><br><span class="line">事件从最外面的元素的事件对应的操作开始执行，后再逐渐深入，其子元素或孙元素对应的操作再继续执行，即从外面往里面触发事件</span><br></pre></td></tr></table></figure>
+<pre><code>//写一个三层div嵌套结构
+</code></pre><p>&lt;!doctype html&gt;</p>
+<p><html lang="en"></html></p>
+<p><head><br>    <meta charset="UTF-8"><br>    <title>Document</title><br>    <style><br>        *{<br>            margin: 0;<br>            padding: 0;<br>        }</p>
+<pre><code>    #grandpa{
+        width: 150px;
+        height: 150px;
+        background-color: orange;
+    }
+    #father{
+        width: 100px;
+        height: 100px;
+        background-color: pink;
+    }
+    #son{
+        width: 50px;
+        height: 50px;
+        background-color: gray;
+    }
+&lt;/style&gt;
+</code></pre><p></head></p>
+<p><body><br>    <div id="grandpa"><br>        <div id="father"><br>            <div id="son"></div><br>        </div><br>    </div><br>    <script><br>        var grandpa = document.getElementById(‘grandpa’);<br>        var father = document.getElementById(‘father’);<br>        var son = document.getElementById(‘son’);</p>
+<pre><code>    // grandpa.onclick = function(event){
+    //     alert(&apos;grandpa&apos;);
+    // }//第一种写法
+    grandpa.addEventListener(&apos;click&apos;, function(){
+        alert(&apos;grandpa&apos;)
+    }, false);//第二种写法
+
+    //第一种写法是按照冒泡规则来的，而第二中方法允许我们自己选择是冒泡（false）还是捕获（true）
+
+
+
+    // father.onclick = function(event){
+    //     alert(&apos;father&apos;);
+    // }
+    father.addEventListener(&apos;click&apos;, function(){
+        alert(&apos;father&apos;)
+    }, true);
+
+
+
+    // son.onclick = function(event){
+    //     alert(&apos;son&apos;);
+    // }
+    son.addEventListener(&apos;click&apos;, function(){
+        alert(&apos;son&apos;)
+    }, false);
+
+
+    //此后的三个布尔值为上面grandpa,father,son依次设置的值并且对应的分别点击son的div，father的div，grandpa的div对应的alert弹窗显示顺序
+
+    //false false false (默认的冒泡模式) ===&gt;    son father grandpa
+    //                                            father grandpa
+    //                                            grandpa
+    //false true false ===&gt;        father son grandpa  
+    // ###此时father使用捕获模式，即使点击的是son，但由于father这一层是事件从外面到里面执行，所以father先alert，再轮到son，最后是grandpa
+    //                            father grandpa
+    //                            grandpa
+
+&lt;/script&gt;
+</code></pre><p></body><br></html><br><code>`</code></p>
+<h4 id="3-事件委托"><a href="#3-事件委托" class="headerlink" title="3.事件委托"></a>3.事件委托</h4><p>主要目的是为了减少浏览器对于dom的操作从而提高性能</p>
+</style></head></p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/07/13/second-day/" data-id="cjjk607dj00008s53kuesjmm1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/07/13/second-day/" data-id="cjjkavqfb0000o453i1l9kma1" class="article-share-link">Share</a>
       
       
     </footer>
@@ -225,7 +300,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/07/12/first-day/" data-id="cjjk607dj00018s53mxhejndq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/07/12/first-day/" data-id="cjjkavqin0001o4538oenih6n" class="article-share-link">Share</a>
       
       
     </footer>
