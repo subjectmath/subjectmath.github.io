@@ -248,6 +248,133 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/16/16-July/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/07/16/16-July/" itemprop="url">
+                  16 July
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-16T01:09:13+08:00">
+                2018-07-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="canvas"><a href="#canvas" class="headerlink" title="canvas"></a>canvas</h2><h4 id="1-canvas中的save-与restore"><a href="#1-canvas中的save-与restore" class="headerlink" title="1.canvas中的save()与restore()"></a>1.canvas中的save()与restore()</h4><p>1.save()方法所说的绘图状态：当前坐标系统（绘图原点是否更改），旋转角度（画布的旋转角度），填充风格，线条风格，阴影风格。</p>
+<p>2.restore()是指回到对应上一次设置save()的地方前所保留的绘图状态。</p>
+<p>3.通过save()和restore()使得我们每次操作画布中的部分元素时，都可以在操作完该元素后重新回到初始的绘图状态从而不会因前者绘图状态的变化而使后来的元素受到影响。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ctx = document.getElementById(&quot;myCanvas&quot;).getContext(&quot;2d&quot;);</span><br><span class="line">//before your operation,save the settings</span><br><span class="line">ctx.save();</span><br><span class="line">//coding to draw A things if it needs some operation such as rotate, change color</span><br><span class="line">//when you want to draw B and didn&apos;t use the settings of A, you need to return to the first surroundings</span><br><span class="line">ctx.restore();</span><br><span class="line">//now, you can draw B things here</span><br></pre></td></tr></table></figure>
+<h4 id="2-清除画布，使得canvas图像持续变化"><a href="#2-清除画布，使得canvas图像持续变化" class="headerlink" title="2.清除画布，使得canvas图像持续变化"></a>2.清除画布，使得canvas图像持续变化</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctx.clearRect(x1,y2,x2,y2);  //x1,y1,x2,y2为canvas画布大小的对角线坐标</span><br></pre></td></tr></table></figure>
+<h4 id="3-canvas小demo"><a href="#3-canvas小demo" class="headerlink" title="3.canvas小demo"></a>3.canvas小demo</h4><p>canvas时钟实现原理是画出表上的刻度与数字作为静态背景，分别做绘制时针分针和秒针的函数，new日期变量，将时间的小时分钟和秒钟分别传进对应的函数参数内。在分别设定好三只指针的长度后，通过时刻算出对应指针的旋转角度，利用sin与cos还有半径便可以算出对应时刻三只指针的坐标。通过lineTo()即可绘制成功。通过定时更新画布并且动态改变指针绘制情况，实现时钟的基本功能。</p>
+<h2 id="var-let-const"><a href="#var-let-const" class="headerlink" title="var let const"></a>var let const</h2><h4 id="1-var"><a href="#1-var" class="headerlink" title="1.var"></a>1.var</h4><p>js中无快捷作用域，let可产生块级作用域<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//类C语言</span><br><span class="line">for(int i = 0; i &lt; 10; i++)&#123;</span><br><span class="line">    //code...</span><br><span class="line">&#125;</span><br><span class="line">i在外部无法获取</span><br><span class="line">//js</span><br><span class="line">for(var i = 0; i &lt; 10; i++)&#123;</span><br><span class="line">    //code...</span><br><span class="line">&#125;</span><br><span class="line">i在外部可获取，如果用let的话则与类C效果一致</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/13/second-day/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -637,7 +764,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
