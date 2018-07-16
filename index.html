@@ -248,6 +248,142 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/17/17-July/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/07/17/17-July/" itemprop="url">
+                  17 July
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-17T01:34:49+08:00">
+                2018-07-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="正则"><a href="#正则" class="headerlink" title="正则"></a>正则</h2><p>\d 表示一个数字</p>
+<p>\w 表示一个字母或者一个数字</p>
+<p>. 表示任意字符</p>
+<p>* 表示任意个字符</p>
+<p>+ 表示至少一个字符</p>
+<p>? 表示0个或1个字符</p>
+<p>{n} 表示n个字符</p>
+<p>{n,m} 表示n-m个字符</p>
+<p>\s 表示一个空格或者tab</p>
+<p>[] 表示范围,即匹配的字符是[]里面的任意一个</p>
+<p>a|b 表示匹配a或者b，感觉跟[]很像</p>
+<p>^ 表示行的开头</p>
+<p>$ 表示行的结束</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//error</span><br><span class="line">&apos;a b c d&apos;.split(&apos;/\s+/&apos;)</span><br><span class="line">//错误，因为正则本身就类似一个字符串，不需要再用&apos;&apos;和&quot;&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//切割字符串</span><br><span class="line">&apos;a b   c&apos;.split(/\s+/);     //[&apos;a&apos;, &apos;b&apos;, &apos;c&apos;];</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//分组，通过正则表达式提取子串，()表示要提取的分组</span><br><span class="line">var re = /^(\d&#123;3&#125;)-(\d&#123;3,8&#125;)$/;</span><br><span class="line">re.exec(&apos;010-12345&apos;);   //[&apos;010-12345&apos;, &apos;010&apos;, &apos;12345&apos;]</span><br><span class="line">//exec()方法在匹配成功后，会返回一个Array，第一个元素是正则表达式匹配到的整个字符串，后面的字符串表示匹配成功的子串，匹配失败返回null。</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/16/16-July/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -332,6 +468,7 @@
 <h4 id="2-清除画布，使得canvas图像持续变化"><a href="#2-清除画布，使得canvas图像持续变化" class="headerlink" title="2.清除画布，使得canvas图像持续变化"></a>2.清除画布，使得canvas图像持续变化</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctx.clearRect(x1,y2,x2,y2);  //x1,y1,x2,y2为canvas画布大小的对角线坐标</span><br></pre></td></tr></table></figure>
 <h4 id="3-canvas小demo"><a href="#3-canvas小demo" class="headerlink" title="3.canvas小demo"></a>3.canvas小demo</h4><p>canvas时钟实现原理是画出表上的刻度与数字作为静态背景，分别做绘制时针分针和秒针的函数，new日期变量，将时间的小时分钟和秒钟分别传进对应的函数参数内。在分别设定好三只指针的长度后，通过时刻算出对应指针的旋转角度，利用sin与cos还有半径便可以算出对应时刻三只指针的坐标。通过lineTo()即可绘制成功。通过定时更新画布并且动态改变指针绘制情况，实现时钟的基本功能。</p>
 <h2 id="var-let-const"><a href="#var-let-const" class="headerlink" title="var let const"></a>var let const</h2><h4 id="1-var"><a href="#1-var" class="headerlink" title="1.var"></a>1.var</h4><p>js中无快捷作用域，let可产生块级作用域<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//类C语言</span><br><span class="line">for(int i = 0; i &lt; 10; i++)&#123;</span><br><span class="line">    //code...</span><br><span class="line">&#125;</span><br><span class="line">i在外部无法获取</span><br><span class="line">//js</span><br><span class="line">for(var i = 0; i &lt; 10; i++)&#123;</span><br><span class="line">    //code...</span><br><span class="line">&#125;</span><br><span class="line">i在外部可获取，如果用let的话则与类C效果一致</span><br></pre></td></tr></table></figure></p>
+<h4 id="2-const"><a href="#2-const" class="headerlink" title="2.const"></a>2.const</h4><p>使用const声明的变量，如果是基本类型，则不能够重新赋值，如果是引用类型，则不能够重新指向新的对象，但可以对对象的属性进行重新赋值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const a = &#123;a:1&#125;;</span><br><span class="line">a = &#123;b:1&#125;;      //报错</span><br><span class="line">a.a = 2;</span><br><span class="line">console.log(a);   //&#123;a:2&#125;;不报错</span><br></pre></td></tr></table></figure></p>
 
           
         
@@ -764,7 +901,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
