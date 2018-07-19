@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="原型1.修改原型上的属性,得重新回到原型上进行修改不能通过实例化对象继承自原型上的属性进行修改，否则只会给当前实例对象赋予一个新的属性12345678910function Person(name)&amp;#123;    this.name = &quot;jun&quot;;&amp;#125;Person.prototype.sex = &quot;male&quot;;var person = new Person();person.sex">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-18T17:55:20.674Z">
+<meta property="og:updated_time" content="2018-07-19T05:48:37.842Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="19 July">
 <meta name="twitter:description" content="原型1.修改原型上的属性,得重新回到原型上进行修改不能通过实例化对象继承自原型上的属性进行修改，否则只会给当前实例对象赋予一个新的属性12345678910function Person(name)&amp;#123;    this.name = &quot;jun&quot;;&amp;#125;Person.prototype.sex = &quot;male&quot;;var person = new Person();person.sex">
@@ -328,7 +328,7 @@
 <p>3.Object.create(原型)<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Person.prototype.name = <span class="string">"jia"</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"><span class="keyword">var</span> person = <span class="built_in">Object</span>.create(Person.prototype);</span><br><span class="line">person.name     <span class="comment">//"jia"</span></span><br></pre></td></tr></table></figure></p>
 <p>并非所有对象的最终都会继承自Object.prototype<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = <span class="built_in">Object</span>.create(<span class="literal">null</span>);</span><br><span class="line"><span class="comment">//obj没有什么toString()....各种方法</span></span><br></pre></td></tr></table></figure></p>
 <h2 id="call-apply，作用：改变this指向，区别：传参列表不同"><a href="#call-apply，作用：改变this指向，区别：传参列表不同" class="headerlink" title="call apply，作用：改变this指向，区别：传参列表不同"></a>call apply，作用：改变this指向，区别：传参列表不同</h2><h4 id="1-call"><a href="#1-call" class="headerlink" title="1.call"></a>1.call</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line">test();    <span class="comment">//test函数执行，实际上是test.call();执行</span></span><br></pre></td></tr></table></figure>
-<p>2.改this指向<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name,age</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.age = age</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> Person(<span class="string">"jun"</span>,<span class="number">18</span>);</span><br><span class="line"><span class="keyword">var</span> obj = &#123;&#125;</span><br><span class="line">Person.call(obj,<span class="string">"jia"</span>,<span class="number">20</span>);               <span class="comment">//利用别人的方法实现自己的功能,obj代替了Person中this的值，后面可以多加上需要的参数。call后面的对象执行前面函数的方法</span></span><br></pre></td></tr></table></figure></p>
+<p>2.改this指向<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name,age</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.age = age</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> Person(<span class="string">"jun"</span>,<span class="number">18</span>);</span><br><span class="line"><span class="keyword">var</span> obj = &#123;&#125;</span><br><span class="line">Person.call(obj,<span class="string">"jia"</span>,<span class="number">20</span>);      <span class="comment">//利用别人的方法实现自己的功能,obj代替了Person中this的值，后面可以多加上需要的参数。call后面的对象执行前面函数的方法</span></span><br></pre></td></tr></table></figure></p>
 <p>3.call与apply的不同在于：call需要把实参按照形参的个数传进去，而apply需要传一个数组</p>
 
       
@@ -375,6 +375,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/19/20-July/" rel="prev" title="20 July">
+                20 July <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -446,7 +450,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
