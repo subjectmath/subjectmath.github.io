@@ -87,17 +87,13 @@
 
 
 
-<meta name="description" content="正则\d 表示一个数字 \w 表示一个字母或者一个数字 . 表示任意字符 * 表示任意个字符 + 表示至少一个字符 ? 表示0个或1个字符 {n} 表示n个字符 {n,m} 表示n-m个字符 \s 表示一个空格或者tab [] 表示范围,即匹配的字符是[]里面的任意一个 a|b 表示匹配a或者b，感觉跟[]很像 ^ 表示行的开头 $ 表示行的结束 123//error&apos;a b c d&apos;.split">
-<meta property="og:type" content="article">
-<meta property="og:title" content="正则操作符">
-<meta property="og:url" content="http://yoursite.com/2018/07/17/17-July/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="正则\d 表示一个数字 \w 表示一个字母或者一个数字 . 表示任意字符 * 表示任意个字符 + 表示至少一个字符 ? 表示0个或1个字符 {n} 表示n个字符 {n,m} 表示n-m个字符 \s 表示一个空格或者tab [] 表示范围,即匹配的字符是[]里面的任意一个 a|b 表示匹配a或者b，感觉跟[]很像 ^ 表示行的开头 $ 表示行的结束 123//error&apos;a b c d&apos;.split">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-22T17:27:24.106Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="正则操作符">
-<meta name="twitter:description" content="正则\d 表示一个数字 \w 表示一个字母或者一个数字 . 表示任意字符 * 表示任意个字符 + 表示至少一个字符 ? 表示0个或1个字符 {n} 表示n个字符 {n,m} 表示n-m个字符 \s 表示一个空格或者tab [] 表示范围,即匹配的字符是[]里面的任意一个 a|b 表示匹配a或者b，感觉跟[]很像 ^ 表示行的开头 $ 表示行的结束 123//error&apos;a b c d&apos;.split">
+<meta name="twitter:title" content="Hexo">
 
 
 
@@ -125,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/07/17/17-July/"/>
+  <link rel="canonical" href="http://yoursite.com/page/2/"/>
 
 
 
 
 
-  <title> 正则操作符 | Hexo </title>
+  <title> Hexo </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="default">
@@ -156,7 +152,9 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-left 
+   page-home 
+ ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -239,9 +237,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-
-  <div id="posts" class="posts-expand">
+  <section id="posts" class="posts-expand">
     
+      
 
   
 
@@ -250,7 +248,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/17/17-July/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/12/hexo-Git/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -271,7 +269,10 @@
             
             
               
-                正则操作符
+                
+                <a class="post-title-link" href="/2018/07/12/hexo-Git/" itemprop="url">
+                  搭建Hexo与了解Git基本操作
+                </a>
               
             
           </h1>
@@ -286,8 +287,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-17T01:34:49+08:00">
-                2018-07-17
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-12T21:33:35+08:00">
+                2018-07-12
               </time>
             
 
@@ -322,44 +323,124 @@
       
 
       
-        <h2 id="正则"><a href="#正则" class="headerlink" title="正则"></a>正则</h2><p>\d 表示一个数字</p>
-<p>\w 表示一个字母或者一个数字</p>
-<p>. 表示任意字符</p>
-<p>* 表示任意个字符</p>
-<p>+ 表示至少一个字符</p>
-<p>? 表示0个或1个字符</p>
-<p>{n} 表示n个字符</p>
-<p>{n,m} 表示n-m个字符</p>
-<p>\s 表示一个空格或者tab</p>
-<p>[] 表示范围,即匹配的字符是[]里面的任意一个</p>
-<p>a|b 表示匹配a或者b，感觉跟[]很像</p>
-<p>^ 表示行的开头</p>
-<p>$ 表示行的结束</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//error</span></span><br><span class="line"><span class="string">'a b c d'</span>.split(<span class="string">'/\s+/'</span>)</span><br><span class="line"><span class="comment">//错误，因为正则本身就类似一个字符串，不需要再用''和""</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//切割字符串</span></span><br><span class="line"><span class="string">'a b   c'</span>.split(<span class="regexp">/\s+/</span>);     <span class="comment">//['a', 'b', 'c'];</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//分组，通过正则表达式提取子串，()表示要提取的分组</span></span><br><span class="line"><span class="keyword">var</span> re = <span class="regexp">/^(\d&#123;3&#125;)-(\d&#123;3,8&#125;)$/</span>;</span><br><span class="line">re.exec(<span class="string">'010-12345'</span>);   <span class="comment">//['010-12345', '010', '12345']</span></span><br><span class="line"><span class="comment">//exec()方法在匹配成功后，会返回一个Array，第一个元素是正则表达式匹配到的整个字符串，后面的字符串表示匹配成功的子串，匹配失败返回null。</span></span><br></pre></td></tr></table></figure>
+        
+          
+            <h1 id="1-搭建hexo"><a href="#1-搭建hexo" class="headerlink" title="1.搭建hexo"></a>1.搭建hexo</h1><h4 id="1-安装Git-Bash-与-node-js"><a href="#1-安装Git-Bash-与-node-js" class="headerlink" title="1.安装Git Bash 与 node.js"></a>1.安装Git Bash 与 node.js</h4><blockquote>
+<p>$ git version 有版本号则为安装成功</p>
+</blockquote>
+<blockquote>
+<p>$ node -v 有版本号则为安装成功</p>
+</blockquote>
+<h4 id="2-用来保存博客的文档"><a href="#2-用来保存博客的文档" class="headerlink" title="2.用来保存博客的文档"></a>2.用来保存博客的文档</h4><p>本地新建文档创建，用npm安装hexo</p>
+<blockquote>
+<p>$ npm i -g hexo</p>
+</blockquote>
+<p>node_modules：是依赖包</p>
+<p>public：存放的是生成的页面</p>
+<p>scaffolds：命令生成文章等的模板</p>
+<p>source：用命令创建的各种文章</p>
+<p>themes：主题</p>
+<p>_config.yml：整个博客的配置</p>
+<p>db.json：source解析所得到的</p>
+<p>package.json：项目所需模块项目的配置信息</p>
+<h4 id="3-将本地的hexo搭载到自己的github上"><a href="#3-将本地的hexo搭载到自己的github上" class="headerlink" title="3.将本地的hexo搭载到自己的github上"></a>3.将本地的hexo搭载到自己的github上</h4><p>1.在自己的github上头像左边加号里面new一个repository（仓库）并设置为yourname.github.io</p>
+<p>2.在本地gitbash中设置全局的账户信息</p>
+<blockquote>
+<p>$ git config –global user.name “subj…”（自己设置）</p>
+</blockquote>
+<blockquote>
+<p>$ git config –global user.email “<a href="mailto:15..@qq.com" target="_blank" rel="noopener">15..@qq.com</a>“（自己设置）</p>
+</blockquote>
+<p>3.在自己本地生成ssh并且放到github上去</p>
+<blockquote>
+<p>$ ssh-keygen -t rsa -C “<a href="mailto:15..@qq.com" target="_blank" rel="noopener">15..@qq.com</a>@example.com” 生成ssh</p>
+</blockquote>
+<blockquote>
+<p>$ cd ~/.ssh</p>
+</blockquote>
+<blockquote>
+<p>$ cat id_rsa.pub 然后将下面出门的整个东西放到github上setting中自己创建的SSH keys 里面</p>
+</blockquote>
+<p>4.在gitbash中验证是否添加成功</p>
+<blockquote>
+<p>$ ssh -T <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a></p>
+</blockquote>
+<p>5.编辑器打开hexo文档下的_config.yml配置(对应你的github名字填写)<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: https:<span class="comment">//github.com/YourgithubName/YourgithubName.github.io.git</span></span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure></p>
+<p>配置完成后，在gitbash中启动<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ hexo clean（非必须的）</span><br><span class="line">$ hexo generate</span><br><span class="line">$ hexo server</span><br><span class="line">//hexo 3.0把服务器独立成个别模块，需要单独安装：npm i hexo-server（记得当初好像不需要这一步）</span><br></pre></td></tr></table></figure></p>
+<p>可以在本地的浏览器输入localhost:4000,就可以看到hexo/source/_posts下的文档了（目前是用markdown的语法写的blog）</p>
+<p>6.上传到github</p>
+<blockquote>
+<p>$ npm install hexo-deployer-git –save 将你写的文章发布到github上开元</p>
+</blockquote>
+<p>执行命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ hexo clean（非必须的）</span><br><span class="line">$ hexo generate</span><br><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure></p>
+<p>然后在浏览器输入<a href="http://yourgithubname.github.io（对应github名自己改）就可以通过github看到自己的博客了" target="_blank" rel="noopener">http://yourgithubname.github.io（对应github名自己改）就可以通过github看到自己的博客了</a></p>
+<h1 id="2-用git实现合作开发的文件改动"><a href="#2-用git实现合作开发的文件改动" class="headerlink" title="2.用git实现合作开发的文件改动"></a>2.用git实现合作开发的文件改动</h1><p>克隆git上的文件</p>
+<blockquote>
+<p>$ git clone (在github复制下来)</p>
+</blockquote>
+<p>打开他的文件包</p>
+<blockquote>
+<p>$ cd first</p>
+</blockquote>
+<p>检查是否接上分支</p>
+<blockquote>
+<p>$ git remote -v</p>
+</blockquote>
+<p>把主分支上的文件拉下来</p>
+<blockquote>
+<p>$ git pull origin master</p>
+</blockquote>
+<p>创建并进入你的分支</p>
+<blockquote>
+<p>$ git checkout -b jiajun</p>
+</blockquote>
+<p>查看你的支路状态</p>
+<blockquote>
+<p>$ git branch</p>
+</blockquote>
+<p>查看你所在支路的状态</p>
+<blockquote>
+<p>$ git status</p>
+</blockquote>
+<p>将修改的文件添加到自己所在分支</p>
+<blockquote>
+<p>$ git add jiajun.txt</p>
+</blockquote>
+<p>将修改的文件推送到自己所在分支</p>
+<blockquote>
+<p>$ git commit -m “jiajun”</p>
+</blockquote>
+<p>将自己分支上的文件拉下来</p>
+<blockquote>
+<p>$ git push origin jiajun</p>
+</blockquote>
+<p>进入主线路</p>
+<blockquote>
+<p>$ git checkout master</p>
+</blockquote>
+<p>把主线路的文件拉下来</p>
+<blockquote>
+<p>$ git pull origin master</p>
+</blockquote>
+<p>再把自己线路上的文件推送到主路线上</p>
+<blockquote>
+<p>$ git merge jiajun</p>
+</blockquote>
 
+          
+        
       
     </div>
 
     <div>
       
-        
-
-      
     </div>
 
     <div>
       
-        
-
-      
     </div>
 
     <div>
-      
-        
-
       
     </div>
 
@@ -367,42 +448,25 @@
       
 
       
-        
+
       
 
       
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2018/07/16/16-July/" rel="next" title="canvas var let const">
-                <i class="fa fa-chevron-left"></i> canvas var let const
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/07/18/18-July/" rel="prev" title="forEach （假）闭包 原型">
-                forEach （假）闭包 原型 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
       
-
-      
+        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
+    
+  </section>
 
-    <div class="post-spread">
-      
-    </div>
-  </div>
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
+
 
 
           </div>
@@ -410,10 +474,6 @@
 
 
           
-  <div class="comments" id="comments">
-    
-  </div>
-
 
         </div>
         
@@ -433,17 +493,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            Overview
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -487,22 +538,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#正则"><span class="nav-number">1.</span> <span class="nav-text">正则</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -610,10 +645,6 @@
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
-
-
 
   
 

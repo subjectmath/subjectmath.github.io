@@ -248,6 +248,130 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/24/jQuery/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/07/24/jQuery/" itemprop="url">
+                  jQuery
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-24T19:41:01+08:00">
+                2018-07-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="两种淡出块的方式"><a href="#两种淡出块的方式" class="headerlink" title="两种淡出块的方式"></a>两种淡出块的方式</h3><p>jQuery中 <figure class="highlight plain"><figcaption><span>方法允许渐变为给定的不透明度，并且如果把透明度调成0，也会存在在文档流里面，而 ```fadeOut()``` 会在文档流里消失</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">```javascript</span><br><span class="line">$(&quot;#div1&quot;).fadeTo(3000,0);</span><br><span class="line">$(&quot;#div2&quot;).fadeOut(6000);</span><br><span class="line">$(&quot;#div3&quot;).fadeOut(12000);</span><br><span class="line">//div1消失时，div2与div3仍然在原来的位置</span><br><span class="line">//div2消失时，div3代替了div2的位置</span><br></pre></td></tr></table></figure></p>
+<h3 id="使用jQ创建标签"><a href="#使用jQ创建标签" class="headerlink" title="使用jQ创建标签"></a>使用jQ创建标签</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> txt1=$(<span class="string">"&lt;p&gt;&lt;/p&gt;"</span>).text(<span class="string">"Text."</span>);<span class="comment">//创建p标签</span></span><br><span class="line">$(<span class="string">"body"</span>).append(txt1);<span class="comment">//加到body里</span></span><br><span class="line"><span class="keyword">var</span> txt2=$(<span class="string">"p"</span>).text(<span class="string">"Text."</span>);<span class="comment">//选择p标签设置内容</span></span><br></pre></td></tr></table></figure>
+<h3 id="jq设定css属性"><a href="#jq设定css属性" class="headerlink" title="jq设定css属性"></a>jq设定css属性</h3><p>jq设定css属性时，一个属性时，属性名和值用逗号隔开，两个以上之间用冒号，不同属性之间用逗号</p>
+<h3 id="eq-方法"><a href="#eq-方法" class="headerlink" title="eq()方法"></a>eq()方法</h3><p>eq() 方法返回被选元素中带有指定索引号的元素，索引号从 0 开始</p>
+<h3 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"ul li:first"</span>)    <span class="comment">//选取第一个&lt;ul&gt;元素的第一个&lt;li&gt;元素</span></span><br><span class="line">$(<span class="string">"ul li:first-child"</span>)    <span class="comment">//选取每个 &lt;ul&gt; 元素的第一个&lt;li&gt;元素</span></span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/23/解构赋值/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1474,230 +1598,13 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/12/hexo-Git/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2018/07/12/hexo-Git/" itemprop="url">
-                  搭建Hexo与了解Git基本操作
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-12T21:33:35+08:00">
-                2018-07-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="1-搭建hexo"><a href="#1-搭建hexo" class="headerlink" title="1.搭建hexo"></a>1.搭建hexo</h1><h4 id="1-安装Git-Bash-与-node-js"><a href="#1-安装Git-Bash-与-node-js" class="headerlink" title="1.安装Git Bash 与 node.js"></a>1.安装Git Bash 与 node.js</h4><blockquote>
-<p>$ git version 有版本号则为安装成功</p>
-</blockquote>
-<blockquote>
-<p>$ node -v 有版本号则为安装成功</p>
-</blockquote>
-<h4 id="2-用来保存博客的文档"><a href="#2-用来保存博客的文档" class="headerlink" title="2.用来保存博客的文档"></a>2.用来保存博客的文档</h4><p>本地新建文档创建，用npm安装hexo</p>
-<blockquote>
-<p>$ npm i -g hexo</p>
-</blockquote>
-<p>node_modules：是依赖包</p>
-<p>public：存放的是生成的页面</p>
-<p>scaffolds：命令生成文章等的模板</p>
-<p>source：用命令创建的各种文章</p>
-<p>themes：主题</p>
-<p>_config.yml：整个博客的配置</p>
-<p>db.json：source解析所得到的</p>
-<p>package.json：项目所需模块项目的配置信息</p>
-<h4 id="3-将本地的hexo搭载到自己的github上"><a href="#3-将本地的hexo搭载到自己的github上" class="headerlink" title="3.将本地的hexo搭载到自己的github上"></a>3.将本地的hexo搭载到自己的github上</h4><p>1.在自己的github上头像左边加号里面new一个repository（仓库）并设置为yourname.github.io</p>
-<p>2.在本地gitbash中设置全局的账户信息</p>
-<blockquote>
-<p>$ git config –global user.name “subj…”（自己设置）</p>
-</blockquote>
-<blockquote>
-<p>$ git config –global user.email “<a href="mailto:15..@qq.com" target="_blank" rel="noopener">15..@qq.com</a>“（自己设置）</p>
-</blockquote>
-<p>3.在自己本地生成ssh并且放到github上去</p>
-<blockquote>
-<p>$ ssh-keygen -t rsa -C “<a href="mailto:15..@qq.com" target="_blank" rel="noopener">15..@qq.com</a>@example.com” 生成ssh</p>
-</blockquote>
-<blockquote>
-<p>$ cd ~/.ssh</p>
-</blockquote>
-<blockquote>
-<p>$ cat id_rsa.pub 然后将下面出门的整个东西放到github上setting中自己创建的SSH keys 里面</p>
-</blockquote>
-<p>4.在gitbash中验证是否添加成功</p>
-<blockquote>
-<p>$ ssh -T <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a></p>
-</blockquote>
-<p>5.编辑器打开hexo文档下的_config.yml配置(对应你的github名字填写)<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: https:<span class="comment">//github.com/YourgithubName/YourgithubName.github.io.git</span></span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure></p>
-<p>配置完成后，在gitbash中启动<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ hexo clean（非必须的）</span><br><span class="line">$ hexo generate</span><br><span class="line">$ hexo server</span><br><span class="line">//hexo 3.0把服务器独立成个别模块，需要单独安装：npm i hexo-server（记得当初好像不需要这一步）</span><br></pre></td></tr></table></figure></p>
-<p>可以在本地的浏览器输入localhost:4000,就可以看到hexo/source/_posts下的文档了（目前是用markdown的语法写的blog）</p>
-<p>6.上传到github</p>
-<blockquote>
-<p>$ npm install hexo-deployer-git –save 将你写的文章发布到github上开元</p>
-</blockquote>
-<p>执行命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ hexo clean（非必须的）</span><br><span class="line">$ hexo generate</span><br><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure></p>
-<p>然后在浏览器输入<a href="http://yourgithubname.github.io（对应github名自己改）就可以通过github看到自己的博客了" target="_blank" rel="noopener">http://yourgithubname.github.io（对应github名自己改）就可以通过github看到自己的博客了</a></p>
-<h1 id="2-用git实现合作开发的文件改动"><a href="#2-用git实现合作开发的文件改动" class="headerlink" title="2.用git实现合作开发的文件改动"></a>2.用git实现合作开发的文件改动</h1><p>克隆git上的文件</p>
-<blockquote>
-<p>$ git clone (在github复制下来)</p>
-</blockquote>
-<p>打开他的文件包</p>
-<blockquote>
-<p>$ cd first</p>
-</blockquote>
-<p>检查是否接上分支</p>
-<blockquote>
-<p>$ git remote -v</p>
-</blockquote>
-<p>把主分支上的文件拉下来</p>
-<blockquote>
-<p>$ git pull origin master</p>
-</blockquote>
-<p>创建并进入你的分支</p>
-<blockquote>
-<p>$ git checkout -b jiajun</p>
-</blockquote>
-<p>查看你的支路状态</p>
-<blockquote>
-<p>$ git branch</p>
-</blockquote>
-<p>查看你所在支路的状态</p>
-<blockquote>
-<p>$ git status</p>
-</blockquote>
-<p>将修改的文件添加到自己所在分支</p>
-<blockquote>
-<p>$ git add jiajun.txt</p>
-</blockquote>
-<p>将修改的文件推送到自己所在分支</p>
-<blockquote>
-<p>$ git commit -m “jiajun”</p>
-</blockquote>
-<p>将自己分支上的文件拉下来</p>
-<blockquote>
-<p>$ git push origin jiajun</p>
-</blockquote>
-<p>进入主线路</p>
-<blockquote>
-<p>$ git checkout master</p>
-</blockquote>
-<p>把主线路的文件拉下来</p>
-<blockquote>
-<p>$ git pull origin master</p>
-</blockquote>
-<p>再把自己线路上的文件推送到主路线上</p>
-<blockquote>
-<p>$ git merge jiajun</p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -1740,7 +1647,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
