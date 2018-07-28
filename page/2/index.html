@@ -248,6 +248,138 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/13/second-day/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/07/13/second-day/" itemprop="url">
+                  flex bootstrap 事件
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-13T22:50:35+08:00">
+                2018-07-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="1-认识flex布局"><a href="#1-认识flex布局" class="headerlink" title="1.认识flex布局"></a>1.认识flex布局</h1><p>阮大大的博客地址</p>
+<p>语法篇<br><a href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html?utm_source=tuicool" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html?utm_source=tuicool</a></p>
+<p>实践篇<br><a href="http://www.ruanyifeng.com/blog/2015/07/flex-examples.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2015/07/flex-examples.html</a></p>
+<h4 id="1-容器默认主轴（main-axis）和垂直的交叉轴（cross-axis）"><a href="#1-容器默认主轴（main-axis）和垂直的交叉轴（cross-axis）" class="headerlink" title="1.容器默认主轴（main axis）和垂直的交叉轴（cross axis）"></a>1.容器默认主轴（main axis）和垂直的交叉轴（cross axis）</h4><h4 id="2-最常用的属性"><a href="#2-最常用的属性" class="headerlink" title="2.最常用的属性"></a>2.最常用的属性</h4><p>1.justify-content属性设定了项目在主轴（水平）上的对齐方式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.box&#123;</span><br><span class="line">    justify-content: flex-start | flex end | center | space-around | space-between;</span><br><span class="line">    //这是在外层定义的属性</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>2.align-items属性设定了项目在交叉轴（垂直）上的对齐方式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.box&#123;</span><br><span class="line">    align-items: flex-start | flex end | center | space-around | space-between | stretch;</span><br><span class="line">    //这也是在外层定义的属性，相对于水平的多了个竖直拉伸stretch</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="2-了解bootstrap的实现原理"><a href="#2-了解bootstrap的实现原理" class="headerlink" title="2.了解bootstrap的实现原理"></a>2.了解bootstrap的实现原理</h1><h4 id="实现的基本原理是利用媒体查询，根据不同设备上的屏幕宽度的像素的不同使用不同的已定义好的类名进行不同的布局状态"><a href="#实现的基本原理是利用媒体查询，根据不同设备上的屏幕宽度的像素的不同使用不同的已定义好的类名进行不同的布局状态" class="headerlink" title="实现的基本原理是利用媒体查询，根据不同设备上的屏幕宽度的像素的不同使用不同的已定义好的类名进行不同的布局状态"></a>实现的基本原理是利用媒体查询，根据不同设备上的屏幕宽度的像素的不同使用不同的已定义好的类名进行不同的布局状态</h4><p>行（row）”必须包含在.container（固定宽度）或 .container-fluid（100% 宽度）的div中,即上一级div得设置这两个类名中的一个</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.col-xs-   &lt;768px</span><br><span class="line">.col-sm-   &gt;=768px      //  small</span><br><span class="line">.col-md-   &gt;=992px      //  middle</span><br><span class="line">.col-lg-   &gt;=1200px     //  large</span><br><span class="line">//后面加上数字t，表示占了t/12的宽度，12宽度不够容下的自动浮动到下一行</span><br></pre></td></tr></table></figure>
+<h1 id="3-事件冒泡，事件捕获和事件委托"><a href="#3-事件冒泡，事件捕获和事件委托" class="headerlink" title="3.事件冒泡，事件捕获和事件委托"></a>3.事件冒泡，事件捕获和事件委托</h1><h4 id="1-事件冒泡"><a href="#1-事件冒泡" class="headerlink" title="1.事件冒泡"></a>1.事件冒泡</h4><p>事件从最小的元素的事件对应的操作开始执行，后由于冒泡，其父元素或祖先元素对应的操作再继续执行，即从里面往外面触发事件。</p>
+<h4 id="2-事件捕获"><a href="#2-事件捕获" class="headerlink" title="2.事件捕获"></a>2.事件捕获</h4><p>事件从最外面的元素的事件对应的操作开始执行，后再逐渐深入，其子元素或孙元素对应的操作再继续执行，即从外面往里面触发事件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line">    //写一个三层div嵌套结构</span><br><span class="line">	&lt;style&gt;</span><br><span class="line">		*&#123;</span><br><span class="line">			margin: 0;</span><br><span class="line">			padding: 0;</span><br><span class="line">		&#125;</span><br><span class="line">		#grandpa&#123;</span><br><span class="line">			width: 150px;</span><br><span class="line">			height: 150px;</span><br><span class="line">			background-color: orange;</span><br><span class="line">		&#125;</span><br><span class="line">		#father&#123;</span><br><span class="line">			width: 100px;</span><br><span class="line">			height: 100px;</span><br><span class="line">			background-color: pink;</span><br><span class="line">		&#125;</span><br><span class="line">		#son&#123;</span><br><span class="line">			width: 50px;</span><br><span class="line">			height: 50px;</span><br><span class="line">			background-color: gray;</span><br><span class="line">		&#125;</span><br><span class="line">	&lt;/style&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">	&lt;div id=&quot;grandpa&quot;&gt;</span><br><span class="line">		&lt;div id=&quot;father&quot;&gt;</span><br><span class="line">			&lt;div id=&quot;son&quot;&gt;&lt;/div&gt;</span><br><span class="line">		&lt;/div&gt;</span><br><span class="line">	&lt;/div&gt;</span><br><span class="line">	&lt;script&gt;</span><br><span class="line">		var grandpa = document.getElementById(&apos;grandpa&apos;);</span><br><span class="line">		var father = document.getElementById(&apos;father&apos;);</span><br><span class="line">		var son = document.getElementById(&apos;son&apos;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		// grandpa.onclick = function(event)&#123;</span><br><span class="line">		// 	alert(&apos;grandpa&apos;);</span><br><span class="line">		// &#125;//第一种写法</span><br><span class="line">		grandpa.addEventListener(&apos;click&apos;, function()&#123;</span><br><span class="line">			alert(&apos;grandpa&apos;)</span><br><span class="line">		&#125;, false);//第二种写法</span><br><span class="line"></span><br><span class="line">		//第一种写法是按照冒泡规则来的，而第二中方法允许我们自己选择是冒泡（false）还是捕获（true）</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		// father.onclick = function(event)&#123;</span><br><span class="line">		// 	alert(&apos;father&apos;);</span><br><span class="line">		// &#125;</span><br><span class="line">		father.addEventListener(&apos;click&apos;, function()&#123;</span><br><span class="line">			alert(&apos;father&apos;)</span><br><span class="line">		&#125;, true);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		// son.onclick = function(event)&#123;</span><br><span class="line">		// 	alert(&apos;son&apos;);</span><br><span class="line">		// &#125;</span><br><span class="line">		son.addEventListener(&apos;click&apos;, function()&#123;</span><br><span class="line">			alert(&apos;son&apos;)</span><br><span class="line">		&#125;, false);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		//此后的三个布尔值为上面grandpa,father,son依次设置的值并且对应的分别点击son的div，father的div，grandpa的div对应的alert弹窗显示顺序</span><br><span class="line">		</span><br><span class="line">		//false false false (默认的冒泡模式) ===&gt;	son father grandpa</span><br><span class="line">		//											father grandpa</span><br><span class="line">		//											grandpa</span><br><span class="line">		//false true false ===&gt;	    father son grandpa  </span><br><span class="line">		// ###此时father使用捕获模式，即使点击的是son，但由于father这一层是事件从外面到里面执行，所以father先alert，再轮到son，最后是grandpa</span><br><span class="line">		//							father grandpa</span><br><span class="line">		//							grandpa</span><br><span class="line"></span><br><span class="line">	&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure></p>
+<h4 id="3-事件委托"><a href="#3-事件委托" class="headerlink" title="3.事件委托"></a>3.事件委托</h4><p>主要目的是为了减少浏览器对于dom的操作从而提高性能，以ul下多个li做例子，实现的原理是li的点击事件冒泡到ul的点击事件上，再对ul的点击事件进行判断确定是哪个li的点击事件</p>
+<p>html代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul id=&quot;control&quot;&gt;</span><br><span class="line">		&lt;li id=&quot;add&quot;&gt;增&lt;/li&gt;</span><br><span class="line">		&lt;li id=&quot;remove&quot;&gt;删&lt;/li&gt;</span><br><span class="line">		&lt;li id=&quot;change&quot;&gt;改&lt;/li&gt;</span><br><span class="line">		&lt;li id=&quot;search&quot;&gt;查&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure></p>
+<p>js代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">window.onload = function () &#123;</span><br><span class="line">			var ctl = document.getElementById(&apos;control&apos;);</span><br><span class="line">			var liList = document.getElementsByTagName(&apos;li&apos;);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		//事件委托</span><br><span class="line">		ctl.addEventListener(&apos;click&apos;, function(event) &#123;</span><br><span class="line">			var event = event || window.event;//后者为了兼容IE</span><br><span class="line">			var ele = event.target;//指向了事件对象元素</span><br><span class="line"></span><br><span class="line">			switch(ele.id)&#123;//根据元素id进行选择</span><br><span class="line">				case: &quot;add&quot; : function() &#123;</span><br><span class="line">					//code..</span><br><span class="line">				&#125;;</span><br><span class="line">				break;</span><br><span class="line">				case: &quot;remove&quot; : function() &#123;</span><br><span class="line">					//code..</span><br><span class="line">				&#125;</span><br><span class="line">				break;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;)</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/12/hexo-Git/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -509,7 +641,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
