@@ -248,6 +248,140 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/16/16-July/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/07/16/16-July/" itemprop="url">
+                  canvas var let const
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-16T01:09:13+08:00">
+                2018-07-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="canvas"><a href="#canvas" class="headerlink" title="canvas"></a>canvas</h1><h4 id="1-canvas中的save-与restore"><a href="#1-canvas中的save-与restore" class="headerlink" title="1.canvas中的save()与restore()"></a>1.canvas中的save()与restore()</h4><p>1.save()方法所说的绘图状态：当前坐标系统（绘图原点是否更改），旋转角度（画布的旋转角度），填充风格，线条风格，阴影风格。</p>
+<p>2.restore()是指回到对应上一次设置save()的地方前所保留的绘图状态。</p>
+<p>3.通过save()和restore()使得我们每次操作画布中的部分元素时，都可以在操作完该元素后重新回到初始的绘图状态从而不会因前者绘图状态的变化而使后来的元素受到影响。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ctx = <span class="built_in">document</span>.getElementById(<span class="string">"myCanvas"</span>).getContext(<span class="string">"2d"</span>);</span><br><span class="line"><span class="comment">//before your operation,save the settings</span></span><br><span class="line">ctx.save();</span><br><span class="line"><span class="comment">//coding to draw A things if it needs some operation such as rotate, change color</span></span><br><span class="line"><span class="comment">//when you want to draw B and didn't use the settings of A, you need to return to the first surroundings</span></span><br><span class="line">ctx.restore();</span><br><span class="line"><span class="comment">//now, you can draw B things here</span></span><br></pre></td></tr></table></figure>
+<h4 id="2-清除画布，使得canvas图像持续变化"><a href="#2-清除画布，使得canvas图像持续变化" class="headerlink" title="2.清除画布，使得canvas图像持续变化"></a>2.清除画布，使得canvas图像持续变化</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctx.clearRect(x1,y2,x2,y2);  <span class="comment">//x1,y1,x2,y2为canvas画布大小的对角线坐标</span></span><br></pre></td></tr></table></figure>
+<h4 id="3-canvas小demo"><a href="#3-canvas小demo" class="headerlink" title="3.canvas小demo"></a>3.canvas小demo</h4><p>canvas时钟实现原理是画出表上的刻度与数字作为静态背景，分别做绘制时针分针和秒针的函数，new日期变量，将时间的小时分钟和秒钟分别传进对应的函数参数内。在分别设定好三只指针的长度后，通过时刻算出对应指针的旋转角度，利用sin与cos还有半径便可以算出对应时刻三只指针的坐标。通过lineTo()即可绘制成功。通过定时更新画布并且动态改变指针绘制情况，实现时钟的基本功能。</p>
+<h1 id="let-和-const"><a href="#let-和-const" class="headerlink" title="let 和 const"></a>let 和 const</h1><h4 id="let"><a href="#let" class="headerlink" title="let"></a>let</h4><p>1.let所声明的变量只在let命令所在的代码块{}内有效<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="keyword">let</span> a = <span class="number">1</span>;&#125;</span><br><span class="line"><span class="built_in">console</span>.log(a);   <span class="comment">//报错，如果是var则打出1</span></span><br></pre></td></tr></table></figure></p>
+<p>2.for循环适合用let声明变量（不会让计数变量泄露为全局变量），for循环变量部分是一个父作用域，而循环体是一个单独的子作用域<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++)&#123;</span><br><span class="line">    <span class="keyword">let</span> i = <span class="string">'abc'</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(i);         <span class="comment">//abc,abc,abc</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//按照let的语法，同一作用域let过或将let的变量不能再定义一遍，而这里不报错</span></span><br></pre></td></tr></table></figure></p>
+<p>3.let不存在变量提升，声明变量之前使用会报错，而不像var是把变量设定为undefined；let变量不能重复声明，不能在函数内部重新声明参数<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params">arg</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> arg; <span class="comment">//报错</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>4.暂时性死区(temporal dead zone)：let前变量不可用（报错），typeof操作也不行（报错）不同于var的undefined</p>
+<p>5.在全局作用域下let声明的不是window的属性了,const声明也一样<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">123</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">window</span>.a); <span class="comment">//123</span></span><br><span class="line"><span class="keyword">let</span> n = <span class="number">123</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">window</span>.n);  <span class="comment">//undefined</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="块级作用域"><a href="#块级作用域" class="headerlink" title="块级作用域"></a>块级作用域</h4><p>1.ES6引入块级作用域，块级作用域内声明函数类似let，在块级作用域之外不可引用，不会提升。（在浏览器的 ES6 环境中，块级作用域内声明的函数，行为类似于var声明的变量。）</p>
+<h4 id="const"><a href="#const" class="headerlink" title="const"></a>const</h4><p>1.const实际上保存的是指针，要求指针所指的东西不能改变，但如果是对象，却可以在上面改属性，但改变对象的话依然会报错<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = <span class="number">12</span>;   <span class="comment">//因此const定义基本类型变量要顺便赋值</span></span><br><span class="line">a = <span class="number">22</span>;           <span class="comment">//报错</span></span><br><span class="line"><span class="keyword">const</span> b = &#123;&#125;;</span><br><span class="line">b.abc = <span class="string">"abc"</span>;    <span class="comment">//不报错,const保存的地址所指向的对象并没有改变</span></span><br></pre></td></tr></table></figure></p>
+<p>2.冻结对象<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> foo = <span class="built_in">Object</span>.freeze(&#123;&#125;);</span><br><span class="line">foo.prop = <span class="number">123</span>;    <span class="comment">//常规下不起作用，严格下报错</span></span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/13/second-day/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -641,7 +775,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
