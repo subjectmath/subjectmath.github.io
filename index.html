@@ -248,6 +248,127 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/22/对象的深度克隆/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/09/22/对象的深度克隆/" itemprop="url">
+                  对象的深度克隆
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-22T15:20:07+08:00">
+                2018-09-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="js引用值的深度克隆"><a href="#js引用值的深度克隆" class="headerlink" title="js引用值的深度克隆"></a>js引用值的深度克隆</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//判断是不是数组</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isArray</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Object</span>.prototype.toString.call(arr) == <span class="string">"[object Array]"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//深度克隆</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">deepClone</span>(<span class="params">obj</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//原始值直接返回</span></span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">typeof</span> obj !== <span class="string">"function"</span> &amp;&amp; <span class="keyword">typeof</span> obj !== <span class="string">"object"</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> obj;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//递归实现引用值内部的属性的遍历拷贝</span></span><br><span class="line">    <span class="keyword">var</span> o = isArray(obj) ? [] : &#123;&#125;;</span><br><span class="line">    <span class="keyword">for</span>(i <span class="keyword">in</span> obj)&#123;</span><br><span class="line">        <span class="comment">//判断属性不是向上查找得来的</span></span><br><span class="line">        <span class="keyword">if</span>(obj.hasOwnProperty(i))&#123;</span><br><span class="line">            o[i] = <span class="keyword">typeof</span> obj[i] === <span class="string">"object"</span> ? deepClone(obj[i]) : obj[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> o;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/22/数组去重/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -328,18 +449,18 @@
             <h4 id="1-双层循环，对于数组里的每一个元素，都遍历一遍目前的目标数组。"><a href="#1-双层循环，对于数组里的每一个元素，都遍历一遍目前的目标数组。" class="headerlink" title="1.双层循环，对于数组里的每一个元素，都遍历一遍目前的目标数组。"></a>1.双层循环，对于数组里的每一个元素，都遍历一遍目前的目标数组。</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> aimArr = [];</span><br><span class="line">    <span class="keyword">var</span> arrlen = arr.length;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; arrlen; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> j = <span class="number">0</span>; j &lt; aimArr.length; j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(arr[i] === aimArr[j])<span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(j == aimArr.length)&#123;</span><br><span class="line">            aimArr.push(arr[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> aimArr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="2-数组的indexOf方法，遍历数组，返回在数组中可以找到一个给定元素的第一个索引，如果不存在则返回-1"><a href="#2-数组的indexOf方法，遍历数组，返回在数组中可以找到一个给定元素的第一个索引，如果不存在则返回-1" class="headerlink" title="2.数组的indexOf方法，遍历数组，返回在数组中可以找到一个给定元素的第一个索引，如果不存在则返回-1"></a>2.数组的indexOf方法，遍历数组，返回在数组中可以找到一个给定元素的第一个索引，如果不存在则返回-1</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span>(<span class="params">arr</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> aimArr = [];</span><br><span class="line">    <span class="keyword">var</span> arrlen = arr.length;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; arrlen; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(aimArr.indexOf(arr[i]) === <span class="number">-1</span>)&#123;</span><br><span class="line">            aimArr.push(arr[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> aimArr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="3-排序后去重-并非真的按照数值排序，只是sort-之后数组变得有秩序了"><a href="#3-排序后去重-并非真的按照数值排序，只是sort-之后数组变得有秩序了" class="headerlink" title="3.排序后去重,并非真的按照数值排序，只是sort()之后数组变得有秩序了"></a>3.排序后去重,并非真的按照数值排序，只是sort()之后数组变得有秩序了</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span>(<span class="params">arr</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> aimArr = [];</span><br><span class="line">    <span class="keyword">var</span> len = arr.length;</span><br><span class="line">    <span class="keyword">var</span> arrSorted = arr.slice().sort();<span class="comment">//赋值值相等的已排序的另一个对象</span></span><br><span class="line">    <span class="keyword">var</span> temp;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; len; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!i || temp !== arrSorted[i])&#123;<span class="comment">//作为首项，或者不与前一位相同(全等符号很重要)</span></span><br><span class="line">            aimArr.push(arrSorted[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        temp = arrSorted[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> aimArr;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//最终返回的也只是用unicode编码排好的去重数组,使用与对已经排序好的数组使用</span></span><br></pre></td></tr></table></figure>
-<h4 id="3-利用indexOf与排序去重组合构造unique-API-根据是否排好序选择对应方法"><a href="#3-利用indexOf与排序去重组合构造unique-API-根据是否排好序选择对应方法" class="headerlink" title="3.利用indexOf与排序去重组合构造unique API,根据是否排好序选择对应方法"></a>3.利用indexOf与排序去重组合构造unique API,根据是否排好序选择对应方法</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span>(<span class="params">arr,isSorted</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> aimArr = [];</span><br><span class="line">    <span class="keyword">var</span> len = arr.length;</span><br><span class="line">    <span class="keyword">var</span> temp;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; len; i++)&#123;</span><br><span class="line">        <span class="keyword">var</span> value = arr[i];</span><br><span class="line">        <span class="keyword">if</span>(isSorted)&#123;</span><br><span class="line">            <span class="keyword">if</span>(!i || temp !== value)&#123;</span><br><span class="line">                aimArr.push(value);</span><br><span class="line">            &#125;</span><br><span class="line">            temp = value;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(aimArr.indexOf(value) === <span class="number">-1</span>)&#123;</span><br><span class="line">            aimArr.push(value);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> aimArr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="4-用上filter"><a href="#4-用上filter" class="headerlink" title="4.用上filter"></a>4.用上filter</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">fliter下的indexOf方法</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span>(<span class="params">arr</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> aimArr = arr.fliter(<span class="function"><span class="keyword">function</span>(<span class="params">item,index,arr</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> arr.indexOf(item) === index;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line">fliter下的排序数组去重</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span>(<span class="params">arr</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> aimArr = arr.concat().sort().fliter(<span class="function"><span class="keyword">function</span>(<span class="params">item,index,arr</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> !index ||item !== arr[index - <span class="number">1</span>];</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="5-Object-键值对法-对象的键值对只能是字符串-对于同时含有字符串类型的数组不能去重，只能去重数字数组"><a href="#5-Object-键值对法-对象的键值对只能是字符串-对于同时含有字符串类型的数组不能去重，只能去重数字数组" class="headerlink" title="5.Object 键值对法,对象的键值对只能是字符串,对于同时含有字符串类型的数组不能去重，只能去重数字数组"></a>5.Object 键值对法,对象的键值对只能是字符串,对于同时含有字符串类型的数组不能去重，只能去重数字数组</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span>(<span class="params">arr</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> aimArr = [];</span><br><span class="line">    <span class="keyword">var</span> temp = &#123;&#125;;</span><br><span class="line">    len = arr.length;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; len; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!temp[arr[i]])&#123;</span><br><span class="line">            temp[arr[i]] = <span class="literal">true</span>;</span><br><span class="line">            aimArr.push(arr[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> aimArr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="4-利用indexOf与排序去重组合构造unique-API-根据是否排好序选择对应方法"><a href="#4-利用indexOf与排序去重组合构造unique-API-根据是否排好序选择对应方法" class="headerlink" title="4.利用indexOf与排序去重组合构造unique API,根据是否排好序选择对应方法"></a>4.利用indexOf与排序去重组合构造unique API,根据是否排好序选择对应方法</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span>(<span class="params">arr,isSorted</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> aimArr = [];</span><br><span class="line">    <span class="keyword">var</span> len = arr.length;</span><br><span class="line">    <span class="keyword">var</span> temp;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; len; i++)&#123;</span><br><span class="line">        <span class="keyword">var</span> value = arr[i];</span><br><span class="line">        <span class="keyword">if</span>(isSorted)&#123;</span><br><span class="line">            <span class="keyword">if</span>(!i || temp !== value)&#123;</span><br><span class="line">                aimArr.push(value);</span><br><span class="line">            &#125;</span><br><span class="line">            temp = value;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(aimArr.indexOf(value) === <span class="number">-1</span>)&#123;</span><br><span class="line">            aimArr.push(value);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> aimArr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="5-用上filter"><a href="#5-用上filter" class="headerlink" title="5.用上filter"></a>5.用上filter</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">fliter下的indexOf方法</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span>(<span class="params">arr</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> aimArr = arr.fliter(<span class="function"><span class="keyword">function</span>(<span class="params">item,index,arr</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> arr.indexOf(item) === index;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line">fliter下的排序数组去重</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span>(<span class="params">arr</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> aimArr = arr.concat().sort().fliter(<span class="function"><span class="keyword">function</span>(<span class="params">item,index,arr</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> !index ||item !== arr[index - <span class="number">1</span>];</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="6-Object-键值对法-对象的键值对只能是字符串-对于同时含有字符串类型的数组不能去重，只能去重数字数组"><a href="#6-Object-键值对法-对象的键值对只能是字符串-对于同时含有字符串类型的数组不能去重，只能去重数字数组" class="headerlink" title="6.Object 键值对法,对象的键值对只能是字符串,对于同时含有字符串类型的数组不能去重，只能去重数字数组"></a>6.Object 键值对法,对象的键值对只能是字符串,对于同时含有字符串类型的数组不能去重，只能去重数字数组</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span>(<span class="params">arr</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> aimArr = [];</span><br><span class="line">    <span class="keyword">var</span> temp = &#123;&#125;;</span><br><span class="line">    len = arr.length;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; len; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!temp[arr[i]])&#123;</span><br><span class="line">            temp[arr[i]] = <span class="literal">true</span>;</span><br><span class="line">            aimArr.push(arr[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> aimArr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>将临时对象键值对写成（类型 + 元素.toString()）: true的形式区别类似1与“1”</li>
 </ul>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span>(<span class="params">arr</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> temp = &#123;&#125;;</span><br><span class="line">    <span class="keyword">return</span> arr.filter(<span class="function"><span class="keyword">function</span>(<span class="params">item,index,arr</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> temp.hasOwnProperty(<span class="keyword">typeof</span> item + item) ? <span class="literal">false</span> : (temp[<span class="keyword">typeof</span> item + item] = <span class="literal">true</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
-<li>对于两个一样的对象,使用JSON.stringify序列化对象<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [&#123;<span class="attr">value</span>:<span class="number">1</span>&#125;,&#123;<span class="attr">value</span>:<span class="number">2</span>&#125;,&#123;<span class="attr">value</span>:<span class="number">1</span>&#125;];</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span>(<span class="params">arr</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> temp = &#123;&#125;;</span><br><span class="line">    <span class="keyword">return</span> arr.filter(<span class="function"><span class="keyword">function</span>(<span class="params">item,index,arr</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> temp.hasOwnProperty(<span class="keyword">typeof</span> item + <span class="built_in">JSON</span>.stringify(item)) ? <span class="literal">false</span> : temp[<span class="keyword">typeof</span> item + <span class="built_in">JSON</span>.stringify(item)] = <span class="literal">true</span>;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
+<li>对于两个一样的对象,使用JSON.stringify序列化对象</li>
 </ul>
-<h4 id="6-ES6方法"><a href="#6-ES6方法" class="headerlink" title="6.ES6方法"></a>6.ES6方法</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Set</span></span><br><span class="line">数据结构<span class="built_in">Set</span>类似数组，但成员的值是唯一的，没有重复的值</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span>(<span class="params">arr</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Array</span>.from(<span class="keyword">new</span> <span class="built_in">Set</span>(arr));</span><br><span class="line">    利用可迭代的<span class="built_in">Set</span>对象创建数组对象</span><br><span class="line">&#125;</span><br><span class="line">function unique = (arr) =&gt; [...new Set(arr)];</span><br><span class="line"></span><br><span class="line"><span class="comment">//Map</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span>(<span class="params">arr</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> temp = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line">    <span class="keyword">return</span> arr.filter(<span class="function">(<span class="params">a</span>) =&gt;</span> !temp.has(a) &amp;&amp; temp.set(a,<span class="number">1</span>))</span><br><span class="line">    <span class="comment">//&amp;&amp;简式的判断语句</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [&#123;<span class="attr">value</span>:<span class="number">1</span>&#125;,&#123;<span class="attr">value</span>:<span class="number">2</span>&#125;,&#123;<span class="attr">value</span>:<span class="number">1</span>&#125;];</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span>(<span class="params">arr</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> temp = &#123;&#125;;</span><br><span class="line">    <span class="keyword">return</span> arr.filter(<span class="function"><span class="keyword">function</span>(<span class="params">item,index,arr</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> temp.hasOwnProperty(<span class="keyword">typeof</span> item + <span class="built_in">JSON</span>.stringify(item)) ? <span class="literal">false</span> : temp[<span class="keyword">typeof</span> item + <span class="built_in">JSON</span>.stringify(item)] = <span class="literal">true</span>;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="7-ES6方法"><a href="#7-ES6方法" class="headerlink" title="7.ES6方法"></a>7.ES6方法</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Set</span></span><br><span class="line">数据结构<span class="built_in">Set</span>类似数组，但成员的值是唯一的，没有重复的值</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span>(<span class="params">arr</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Array</span>.from(<span class="keyword">new</span> <span class="built_in">Set</span>(arr));</span><br><span class="line">    利用可迭代的<span class="built_in">Set</span>对象创建数组对象</span><br><span class="line">&#125;</span><br><span class="line">function unique = (arr) =&gt; [...new Set(arr)];</span><br><span class="line"></span><br><span class="line"><span class="comment">//Map</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span>(<span class="params">arr</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> temp = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line">    <span class="keyword">return</span> arr.filter(<span class="function">(<span class="params">a</span>) =&gt;</span> !temp.has(a) &amp;&amp; temp.set(a,<span class="number">1</span>))</span><br><span class="line">    <span class="comment">//&amp;&amp;简式的判断语句</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           
         
       
@@ -1443,137 +1564,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/18/18-July/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2018/07/18/18-July/" itemprop="url">
-                  forEach （假）闭包 原型
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-18T00:06:41+08:00">
-                2018-07-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="数组的forEach-items-index-array"><a href="#数组的forEach-items-index-array" class="headerlink" title="数组的forEach(items, index, array)"></a>数组的forEach(items, index, array)</h2><p>1.在数组定义时省略的元素，不会在forEach遍历是被列出，但手动设置undefined的元素会被列出。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>, ,<span class="number">4</span>];<span class="comment">//[1,2,undefined,4]</span></span><br><span class="line">arr.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">items</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(items);  <span class="comment">//1,2,4</span></span><br><span class="line">    <span class="comment">//1,2,undefined,4</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
-<p>2.取参数的时候，形参的名字并不决定对应取的是items还是index，如下代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line">arr.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">index,items</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(index);    <span class="comment">//结果是1,2,3，显然这应该是items的值</span></span><br><span class="line">    <span class="built_in">console</span>.log(items);    <span class="comment">//结果是0,1,2显然这应该是index的值</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
-<p>形参名对应的参数只与对应的位置有关，如果只想取index，你也绕不开要写上items在前面</p>
-<p>3.forEach()的第二个参数用来绑定回调函数的this关键字<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> out = [];</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>].forEach(<span class="function"><span class="keyword">function</span>(<span class="params">elem</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.push(elem + elem);</span><br><span class="line">&#125;, out);</span><br><span class="line"><span class="built_in">console</span>.log(out);  <span class="comment">//[2, 4, 6]</span></span><br></pre></td></tr></table></figure></p>
-<p>如果使用箭头函数，则forEach()的第二个参数会被忽略，因为剪头函数上绑定了this的值</p>
-<h2 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h2><h4 id="1-闭包出的bug（for循环套函数再保存到外部）"><a href="#1-闭包出的bug（for循环套函数再保存到外部）" class="headerlink" title="1.闭包出的bug（for循环套函数再保存到外部）"></a>1.闭包出的bug（for循环套函数再保存到外部）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)&#123;</span><br><span class="line">        setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;       </span><br><span class="line">          <span class="built_in">console</span>.log(i);</span><br><span class="line">        &#125;,i * <span class="number">1000</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">test();    <span class="comment">//每秒钟控制台出现一个10，最后有10个10</span></span><br><span class="line"><span class="comment">//test函数中只有一个执行期上下文，访问同一个i</span></span><br><span class="line"><span class="comment">//test执行完后i变成10</span></span><br><span class="line"><span class="comment">//主要是函数被保存到了外部，当函数执行的时候，执行期上下文的i已经变成10了</span></span><br></pre></td></tr></table></figure>
-<p>该例子中，setTimeout由于是在js代码执行完后在在任务队列中执行定时器中设定的function（定义了却不执行，函数中的i未被赋值），而定时器的间隔时间，在js执行代码的时候就已经读取出来并赋给了i，主要是函数滞后带来的问题</p>
-<h4 id="2-闭包bug解决"><a href="#2-闭包bug解决" class="headerlink" title="2.闭包bug解决"></a>2.闭包bug解决</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)&#123;</span><br><span class="line">        (<span class="function"><span class="keyword">function</span>(<span class="params">j</span>)</span>&#123;</span><br><span class="line">            setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;       </span><br><span class="line">                <span class="built_in">console</span>.log(j);</span><br><span class="line">            &#125;,i * <span class="number">1000</span>)</span><br><span class="line">        &#125;(i))</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">test();<span class="comment">//每秒出现一个数，0到9</span></span><br><span class="line"><span class="comment">//运用立即执行函数，将各个时刻的i的值传给j，从而将i的值通过j保存到了外部</span></span><br></pre></td></tr></table></figure>
-<h4 id="3-关于闭包"><a href="#3-关于闭包" class="headerlink" title="3.关于闭包"></a>3.关于闭包</h4><p>在创建新的对象或者类时，方法通常应该关联于对象的原型，而不是定义到对象的构造器中。原因是这将导致每次构造器被调用时，方法都会被重新赋值一次（也就是，每个对象的创建）。</p>
-<h2 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h2><p>1.只有当自己的构造函数上面没有赋给的属性，才会按原型或者原型链往上找<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = <span class="string">"jiajun"</span>;<span class="comment">//如果没有这句，则结果是"ugly boy"</span></span><br><span class="line">    &#125;</span><br><span class="line">    Person.prototype.name = <span class="string">"ugly boy"</span>;</span><br><span class="line">    <span class="keyword">var</span> me = <span class="keyword">new</span> Person();</span><br><span class="line">    <span class="built_in">console</span>.log(me.name);<span class="comment">//"jiajun"</span></span><br></pre></td></tr></table></figure></p>
-<p>2.原型与构造函数，实例化对象的关系<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">me.__proto__ === Person.prototype;<span class="comment">//实例化对象的__proto__属性指向构造函数的prototype属性</span></span><br><span class="line">me.constructor;<span class="comment">//Person();//实例化对象的constructor属性指向构造函数</span></span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1623,7 +1613,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>

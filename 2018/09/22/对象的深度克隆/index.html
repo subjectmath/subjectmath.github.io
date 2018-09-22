@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="javascript," />
 
 
 
@@ -87,17 +87,18 @@
 
 
 
-<meta name="description" content="dom对象中this与event.target区别1.this是事件冒泡，从内到外this的值都是在改变，向外触发函数 1234567891011121314&amp;lt;div id=&amp;quot;div&amp;quot; onclick=&amp;quot;divclick(this)&amp;quot; style=&amp;quot;width:100px;height: 100px;background-color: pin">
+<meta name="description" content="js引用值的深度克隆123456789101112131415161718192021//判断是不是数组function isArray(arr) &amp;#123;    return Object.prototype.toString.call(arr) == &quot;[object Array]&quot;;&amp;#125;//深度克隆function deepClone(obj)&amp;#123;    //原始值直接返">
+<meta name="keywords" content="javascript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="this与event.target">
-<meta property="og:url" content="http://yoursite.com/2018/07/28/this与event-target/index.html">
+<meta property="og:title" content="对象的深度克隆">
+<meta property="og:url" content="http://yoursite.com/2018/09/22/对象的深度克隆/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="dom对象中this与event.target区别1.this是事件冒泡，从内到外this的值都是在改变，向外触发函数 1234567891011121314&amp;lt;div id=&amp;quot;div&amp;quot; onclick=&amp;quot;divclick(this)&amp;quot; style=&amp;quot;width:100px;height: 100px;background-color: pin">
+<meta property="og:description" content="js引用值的深度克隆123456789101112131415161718192021//判断是不是数组function isArray(arr) &amp;#123;    return Object.prototype.toString.call(arr) == &quot;[object Array]&quot;;&amp;#125;//深度克隆function deepClone(obj)&amp;#123;    //原始值直接返">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-28T05:34:55.514Z">
+<meta property="og:updated_time" content="2018-09-22T07:22:11.572Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="this与event.target">
-<meta name="twitter:description" content="dom对象中this与event.target区别1.this是事件冒泡，从内到外this的值都是在改变，向外触发函数 1234567891011121314&amp;lt;div id=&amp;quot;div&amp;quot; onclick=&amp;quot;divclick(this)&amp;quot; style=&amp;quot;width:100px;height: 100px;background-color: pin">
+<meta name="twitter:title" content="对象的深度克隆">
+<meta name="twitter:description" content="js引用值的深度克隆123456789101112131415161718192021//判断是不是数组function isArray(arr) &amp;#123;    return Object.prototype.toString.call(arr) == &quot;[object Array]&quot;;&amp;#125;//深度克隆function deepClone(obj)&amp;#123;    //原始值直接返">
 
 
 
@@ -125,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/07/28/this与event-target/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/09/22/对象的深度克隆/"/>
 
 
 
 
 
-  <title> this与event.target | Hexo </title>
+  <title> 对象的深度克隆 | Hexo </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="default">
@@ -250,7 +251,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/28/this与event-target/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/22/对象的深度克隆/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -271,7 +272,7 @@
             
             
               
-                this与event.target
+                对象的深度克隆
               
             
           </h1>
@@ -286,8 +287,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-28T13:15:38+08:00">
-                2018-07-28
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-22T15:20:07+08:00">
+                2018-09-22
               </time>
             
 
@@ -322,9 +323,7 @@
       
 
       
-        <h2 id="dom对象中this与event-target区别"><a href="#dom对象中this与event-target区别" class="headerlink" title="dom对象中this与event.target区别"></a>dom对象中this与event.target区别</h2><p>1.this是事件冒泡，从内到外this的值都是在改变，向外触发函数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;div&quot; onclick=&quot;divclick(this)&quot; style=&quot;width:100px;height: 100px;background-color: pink&quot;&gt;div</span><br><span class="line">    &lt;a id=&quot;a&quot; onclick=&quot;aclick(this)&quot; style=&quot;display: block;width: 50px;height: 50px;background-color: orange;&quot;&gt;a&lt;/a&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    function divclick(item)&#123;</span><br><span class="line">        console.log(item.id);</span><br><span class="line">    &#125;</span><br><span class="line">    function aclick(item)&#123;</span><br><span class="line">        console.log(item.id);</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">//点a触发   //a     //div</span><br><span class="line">//点触发       //div</span><br></pre></td></tr></table></figure>
-<p>2.event.target代表的是触发事件的dom对象，是静态不变的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;div&quot; onclick=&quot;divclick()&quot; style=&quot;width:100px;height: 100px;background-color: pink&quot;&gt;div</span><br><span class="line">    &lt;a id=&quot;a&quot; onclick=&quot;aclick()&quot; style=&quot;display: block;width: 50px;height: 50px;background-color: orange;&quot;&gt;a&lt;/a&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    function divclick()&#123;</span><br><span class="line">        console.log(event.target.id);</span><br><span class="line">    &#125;</span><br><span class="line">    function aclick()&#123;</span><br><span class="line">        console.log(event.target.id);</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">//点a触发   //a     //a</span><br><span class="line">//点divchufa       //div</span><br></pre></td></tr></table></figure></p>
+        <h4 id="js引用值的深度克隆"><a href="#js引用值的深度克隆" class="headerlink" title="js引用值的深度克隆"></a>js引用值的深度克隆</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//判断是不是数组</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isArray</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Object</span>.prototype.toString.call(arr) == <span class="string">"[object Array]"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//深度克隆</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">deepClone</span>(<span class="params">obj</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//原始值直接返回</span></span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">typeof</span> obj !== <span class="string">"function"</span> &amp;&amp; <span class="keyword">typeof</span> obj !== <span class="string">"object"</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> obj;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//递归实现引用值内部的属性的遍历拷贝</span></span><br><span class="line">    <span class="keyword">var</span> o = isArray(obj) ? [] : &#123;&#125;;</span><br><span class="line">    <span class="keyword">for</span>(i <span class="keyword">in</span> obj)&#123;</span><br><span class="line">        <span class="comment">//判断属性不是向上查找得来的</span></span><br><span class="line">        <span class="keyword">if</span>(obj.hasOwnProperty(i))&#123;</span><br><span class="line">            o[i] = <span class="keyword">typeof</span> obj[i] === <span class="string">"object"</span> ? deepClone(obj[i]) : obj[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> o;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -352,6 +351,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
+          
+        </div>
+      
 
       
         
@@ -361,8 +366,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/07/24/jQuery/" rel="next" title="jQuery">
-                <i class="fa fa-chevron-left"></i> jQuery
+              <a href="/2018/09/22/数组去重/" rel="next" title="数组去重">
+                <i class="fa fa-chevron-left"></i> 数组去重
               </a>
             
           </div>
@@ -370,10 +375,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/08/20/暑假总结/" rel="prev" title="暑假总结">
-                暑假总结 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -493,7 +494,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#dom对象中this与event-target区别"><span class="nav-number">1.</span> <span class="nav-text">dom对象中this与event.target区别</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#js引用值的深度克隆"><span class="nav-number">1.</span> <span class="nav-text">js引用值的深度克隆</span></a></li></ol></div>
             
 
           </div>

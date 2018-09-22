@@ -248,6 +248,137 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/18/18-July/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/07/18/18-July/" itemprop="url">
+                  forEach （假）闭包 原型
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-18T00:06:41+08:00">
+                2018-07-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="数组的forEach-items-index-array"><a href="#数组的forEach-items-index-array" class="headerlink" title="数组的forEach(items, index, array)"></a>数组的forEach(items, index, array)</h2><p>1.在数组定义时省略的元素，不会在forEach遍历是被列出，但手动设置undefined的元素会被列出。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>, ,<span class="number">4</span>];<span class="comment">//[1,2,undefined,4]</span></span><br><span class="line">arr.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">items</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(items);  <span class="comment">//1,2,4</span></span><br><span class="line">    <span class="comment">//1,2,undefined,4</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>2.取参数的时候，形参的名字并不决定对应取的是items还是index，如下代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line">arr.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">index,items</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(index);    <span class="comment">//结果是1,2,3，显然这应该是items的值</span></span><br><span class="line">    <span class="built_in">console</span>.log(items);    <span class="comment">//结果是0,1,2显然这应该是index的值</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>形参名对应的参数只与对应的位置有关，如果只想取index，你也绕不开要写上items在前面</p>
+<p>3.forEach()的第二个参数用来绑定回调函数的this关键字<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> out = [];</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>].forEach(<span class="function"><span class="keyword">function</span>(<span class="params">elem</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.push(elem + elem);</span><br><span class="line">&#125;, out);</span><br><span class="line"><span class="built_in">console</span>.log(out);  <span class="comment">//[2, 4, 6]</span></span><br></pre></td></tr></table></figure></p>
+<p>如果使用箭头函数，则forEach()的第二个参数会被忽略，因为剪头函数上绑定了this的值</p>
+<h2 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h2><h4 id="1-闭包出的bug（for循环套函数再保存到外部）"><a href="#1-闭包出的bug（for循环套函数再保存到外部）" class="headerlink" title="1.闭包出的bug（for循环套函数再保存到外部）"></a>1.闭包出的bug（for循环套函数再保存到外部）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)&#123;</span><br><span class="line">        setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;       </span><br><span class="line">          <span class="built_in">console</span>.log(i);</span><br><span class="line">        &#125;,i * <span class="number">1000</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">test();    <span class="comment">//每秒钟控制台出现一个10，最后有10个10</span></span><br><span class="line"><span class="comment">//test函数中只有一个执行期上下文，访问同一个i</span></span><br><span class="line"><span class="comment">//test执行完后i变成10</span></span><br><span class="line"><span class="comment">//主要是函数被保存到了外部，当函数执行的时候，执行期上下文的i已经变成10了</span></span><br></pre></td></tr></table></figure>
+<p>该例子中，setTimeout由于是在js代码执行完后在在任务队列中执行定时器中设定的function（定义了却不执行，函数中的i未被赋值），而定时器的间隔时间，在js执行代码的时候就已经读取出来并赋给了i，主要是函数滞后带来的问题</p>
+<h4 id="2-闭包bug解决"><a href="#2-闭包bug解决" class="headerlink" title="2.闭包bug解决"></a>2.闭包bug解决</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)&#123;</span><br><span class="line">        (<span class="function"><span class="keyword">function</span>(<span class="params">j</span>)</span>&#123;</span><br><span class="line">            setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;       </span><br><span class="line">                <span class="built_in">console</span>.log(j);</span><br><span class="line">            &#125;,i * <span class="number">1000</span>)</span><br><span class="line">        &#125;(i))</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">test();<span class="comment">//每秒出现一个数，0到9</span></span><br><span class="line"><span class="comment">//运用立即执行函数，将各个时刻的i的值传给j，从而将i的值通过j保存到了外部</span></span><br></pre></td></tr></table></figure>
+<h4 id="3-关于闭包"><a href="#3-关于闭包" class="headerlink" title="3.关于闭包"></a>3.关于闭包</h4><p>在创建新的对象或者类时，方法通常应该关联于对象的原型，而不是定义到对象的构造器中。原因是这将导致每次构造器被调用时，方法都会被重新赋值一次（也就是，每个对象的创建）。</p>
+<h2 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h2><p>1.只有当自己的构造函数上面没有赋给的属性，才会按原型或者原型链往上找<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = <span class="string">"jiajun"</span>;<span class="comment">//如果没有这句，则结果是"ugly boy"</span></span><br><span class="line">    &#125;</span><br><span class="line">    Person.prototype.name = <span class="string">"ugly boy"</span>;</span><br><span class="line">    <span class="keyword">var</span> me = <span class="keyword">new</span> Person();</span><br><span class="line">    <span class="built_in">console</span>.log(me.name);<span class="comment">//"jiajun"</span></span><br></pre></td></tr></table></figure></p>
+<p>2.原型与构造函数，实例化对象的关系<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">me.__proto__ === Person.prototype;<span class="comment">//实例化对象的__proto__属性指向构造函数的prototype属性</span></span><br><span class="line">me.constructor;<span class="comment">//Person();//实例化对象的constructor属性指向构造函数</span></span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/17/17-July/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -911,7 +1042,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
