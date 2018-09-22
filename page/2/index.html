@@ -248,6 +248,142 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/17/17-July/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/07/17/17-July/" itemprop="url">
+                  正则操作符
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-17T01:34:49+08:00">
+                2018-07-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="正则"><a href="#正则" class="headerlink" title="正则"></a>正则</h2><p>\d 表示一个数字</p>
+<p>\w 表示一个字母或者一个数字</p>
+<p>. 表示任意字符</p>
+<p>* 表示任意个字符</p>
+<p>+ 表示至少一个字符</p>
+<p>? 表示0个或1个字符</p>
+<p>{n} 表示n个字符</p>
+<p>{n,m} 表示n-m个字符</p>
+<p>\s 表示一个空格或者tab</p>
+<p>[] 表示范围,即匹配的字符是[]里面的任意一个</p>
+<p>a|b 表示匹配a或者b，感觉跟[]很像</p>
+<p>^ 表示行的开头</p>
+<p>$ 表示行的结束</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//error</span></span><br><span class="line"><span class="string">'a b c d'</span>.split(<span class="string">'/\s+/'</span>)</span><br><span class="line"><span class="comment">//错误，因为正则本身就类似一个字符串，不需要再用''和""</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//切割字符串</span></span><br><span class="line"><span class="string">'a b   c'</span>.split(<span class="regexp">/\s+/</span>);     <span class="comment">//['a', 'b', 'c'];</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//分组，通过正则表达式提取子串，()表示要提取的分组</span></span><br><span class="line"><span class="keyword">var</span> re = <span class="regexp">/^(\d&#123;3&#125;)-(\d&#123;3,8&#125;)$/</span>;</span><br><span class="line">re.exec(<span class="string">'010-12345'</span>);   <span class="comment">//['010-12345', '010', '12345']</span></span><br><span class="line"><span class="comment">//exec()方法在匹配成功后，会返回一个Array，第一个元素是正则表达式匹配到的整个字符串，后面的字符串表示匹配成功的子串，匹配失败返回null。</span></span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/16/16-July/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -775,7 +911,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -783,6 +919,15 @@
 
           
 
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">tags</span>
+              
+            </div>
           
 
         </nav>
