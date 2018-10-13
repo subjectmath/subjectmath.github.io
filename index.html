@@ -248,6 +248,126 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/12/Vue生命周期/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/10/12/Vue生命周期/" itemprop="url">
+                  Vue生命周期
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-12T11:56:02+08:00">
+                2018-10-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> Test = &#123;</span></span><br><span class="line"><span class="xml">        template:`<span class="tag">&lt;<span class="name">div</span>&gt;</span>我的test组件 &#123;&#123; text &#125;&#125;</span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"text = text + 1"</span>&gt;</span>点我加1<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span>`,</span></span><br><span class="line"><span class="javascript">        data:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="javascript">                text:<span class="string">"hello world"</span></span></span><br><span class="line"><span class="undefined">            &#125;</span></span><br><span class="line"><span class="undefined">        &#125;,</span></span><br><span class="line"><span class="javascript">        <span class="comment">//-------------------------</span></span></span><br><span class="line"><span class="javascript">        beforeCreate:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="comment">//组件创建之前，拿不到数据的</span></span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="keyword">this</span>.text);<span class="comment">//undefined</span></span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">"beforeCreate"</span>);</span></span><br><span class="line"><span class="undefined">        &#125;,</span></span><br><span class="line"><span class="javascript">        created:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="comment">//组件创建之后，操作初始化的数据</span></span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="keyword">this</span>.text);<span class="comment">//hello world</span></span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">"created"</span>);</span></span><br><span class="line"><span class="undefined">        &#125;,</span></span><br><span class="line"><span class="javascript">        <span class="comment">//使用该组件，就会触发以上的事件函数（钩子函数）</span></span></span><br><span class="line"><span class="javascript">        <span class="comment">//created中可以操作数据  并且可以实现VUe-&gt;页面的影响</span></span></span><br><span class="line"><span class="javascript">        <span class="comment">//应用：发起ajax请求</span></span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">        <span class="comment">//----------------------------</span></span></span><br><span class="line"><span class="javascript">        beforeMount:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="comment">//vue起作用，装载数据到Dom之前</span></span></span><br><span class="line"><span class="javascript">            <span class="comment">//console.log(document.body.innerHTML);</span></span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">"beforeMount"</span>);</span></span><br><span class="line"><span class="undefined">        &#125;,</span></span><br><span class="line"><span class="javascript">        mounted:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="comment">//vue起作用，装载数据到Dom之后</span></span></span><br><span class="line"><span class="javascript">            <span class="comment">//console.log(document.body.innerHTML);	</span></span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">"mounted"</span>);</span></span><br><span class="line"><span class="undefined">        &#125;,</span></span><br><span class="line"><span class="javascript">        <span class="comment">// //装载之后就是Vue作用之后的Dom</span></span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">        <span class="comment">//---------------------------------</span></span></span><br><span class="line"><span class="javascript">        beforeUpdate:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="built_in">document</span>.body.innerHTML);</span></span><br><span class="line"><span class="undefined">        &#125;,</span></span><br><span class="line"><span class="javascript">        updated:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="built_in">document</span>.body.innerHTML);</span></span><br><span class="line"><span class="undefined">        &#125;,</span></span><br><span class="line"><span class="javascript">        <span class="comment">//基于数据改变，影响页面</span></span></span><br><span class="line"><span class="javascript">        <span class="comment">//以上两个是当有更新数据才会触发</span></span></span><br><span class="line"><span class="javascript">        <span class="comment">//updated可以获取新Dom</span></span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">        <span class="comment">//-------------------------------------</span></span></span><br><span class="line"><span class="javascript">        beforeDestroy:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="comment">//销毁之前</span></span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">"beforeDestroy"</span>);</span></span><br><span class="line"><span class="undefined">        &#125;,</span></span><br><span class="line"><span class="javascript">        destroyed:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="comment">//销毁之后</span></span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">"destroyed"</span>);</span></span><br><span class="line"><span class="undefined">        &#125;,</span></span><br><span class="line"><span class="javascript">        <span class="comment">//对应父组件v-if 为false 就销毁当前组件</span></span></span><br><span class="line"><span class="javascript">        <span class="comment">//销毁最终都是做一些其他功能的释放，比如：保存到localStorage</span></span></span><br><span class="line"><span class="undefined">        </span></span><br><span class="line"><span class="javascript">        <span class="comment">//-----------------------------------------------</span></span></span><br><span class="line"><span class="javascript">        activated:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">"组件被激活了"</span>);</span></span><br><span class="line"><span class="undefined">        &#125;,</span></span><br><span class="line"><span class="javascript">        deactivated:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">"组件被停用了"</span>)</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="javascript">        <span class="comment">//created 和 actived  都是v-if="true" 子组件的状态</span></span></span><br><span class="line"><span class="javascript">        <span class="comment">//created没有被keep-alive内置组件包裹，actived被包裹了</span></span></span><br><span class="line"><span class="javascript">        <span class="comment">//销毁和停用同上</span></span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> App = &#123;</span></span><br><span class="line"><span class="undefined">        components:&#123;</span></span><br><span class="line"><span class="undefined">            test:Test</span></span><br><span class="line"><span class="undefined">        &#125;,</span></span><br><span class="line"><span class="undefined">        template:`</span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;<span class="name">keep-alive</span>&gt;</span></span></span><br><span class="line"><span class="javascript">                    &lt;test v-<span class="keyword">if</span>=<span class="string">"isExit"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">test</span>&gt;</span></span></span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;/<span class="name">keep-alive</span>&gt;</span>	</span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"isExit = !isExit"</span>&gt;</span>点击切换<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="undefined">        `,</span></span><br><span class="line"><span class="javascript">        data:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="javascript">                isExit:<span class="literal">true</span></span></span><br><span class="line"><span class="undefined">            &#125;</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">        el:<span class="string">"#app"</span>,</span></span><br><span class="line"><span class="undefined">        components:&#123;</span></span><br><span class="line"><span class="undefined">            app:App</span></span><br><span class="line"><span class="undefined">        &#125;,</span></span><br><span class="line"><span class="javascript">        template:<span class="string">`&lt;app/&gt;`</span></span></span><br><span class="line"><span class="undefined">    &#125;)</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/06/Vue组件（一）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1477,140 +1597,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/19/20-July/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2018/07/19/20-July/" itemprop="url">
-                  bind js创建对象 网络
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-19T22:09:01+08:00">
-                2018-07-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="bind（Function-prototype-bind）"><a href="#bind（Function-prototype-bind）" class="headerlink" title="bind（Function.prototype.bind）"></a>bind（Function.prototype.bind）</h2><p>f.bind(someObject)会创建一个与f具有相同函数体和作用域的函数，但是在这个函数中，this被永久地绑定到了bind的第一个参数，无论这个函数是如何调用的<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span> a&#125;;</span><br><span class="line"><span class="keyword">var</span> g = f.bind(&#123;<span class="attr">a</span>:<span class="string">"aaa"</span>&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(g()); <span class="comment">// aaa</span></span><br><span class="line"><span class="keyword">var</span> h = f.bind(&#123;<span class="attr">a</span>:<span class="string">"bbb"</span>&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(h()); <span class="comment">// bbb </span></span><br><span class="line"><span class="keyword">var</span> j = g.bind(&#123;<span class="attr">a</span>:<span class="string">"ccc"</span>&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(j()); <span class="comment">//aaa  失败</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="互联网是如何工作的"><a href="#互联网是如何工作的" class="headerlink" title="互联网是如何工作的"></a>互联网是如何工作的</h2><p>1.电脑通过连接到路由，路由（小电脑）向“猫”将网络信息变成电话设施可以处理的信息，将自己家和隔壁邻居联系起来。</p>
-<p>2.把信息从外面的网络发送到ISP</p>
-<p>3.任何连接到网络中的电脑都需要有一个唯一的地址去标记他，叫做“IP地址”,一般给IP地址取一个容易阅读的域名，如“google”</p>
-<h2 id="浏览器的同源策略"><a href="#浏览器的同源策略" class="headerlink" title="浏览器的同源策略"></a>浏览器的同源策略</h2><p>1.如果两个页面的协议，端口和域名都相同，就具有相同的源<br>2.a标签打开的网页一般会继承打开a标签所在url的文档的源</p>
-<h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p>1.内容包括：协议，域名，端口号，文件路径，参数，锚点<br>2.使用URL的地方：a标签，外部css和js的link和script标签，video，img，audio标签，iframe元素</p>
-<h2 id="js创建对象方法的区别"><a href="#js创建对象方法的区别" class="headerlink" title="js创建对象方法的区别"></a>js创建对象方法的区别</h2><h4 id="1-工厂创建"><a href="#1-工厂创建" class="headerlink" title="1.工厂创建"></a>1.工厂创建</h4><p>在构造函数内新建对象，增加属性后返回，不需要new。</p>
-<p>缺点：多个实例之间没有关系，无法确定对象的类型（都是Object的实例）。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createPerson</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> o = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">    o.name = <span class="string">"abc"</span>;</span><br><span class="line">    o.age = <span class="number">18</span>;</span><br><span class="line">    o.say = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> o;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h4 id="2-构造函数"><a href="#2-构造函数" class="headerlink" title="2.构造函数"></a>2.构造函数</h4><p>利用this在实例化后会指向实例化的对象，从而在构造函数内对this加属性，即对实例化对象加属性。</p>
-<p>缺点：构造函数里的方法都要在每个实例重新创建，浪费内存。可以通过将方法写到函数外部解决。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name,age</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.age = age;</span><br><span class="line">    <span class="keyword">this</span>.say = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="comment">//code...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> p1 = <span class="keyword">new</span> Person(<span class="string">"abc"</span>,<span class="number">18</span>);</span><br></pre></td></tr></table></figure></p>
-<h4 id="3-基于原型创建对象"><a href="#3-基于原型创建对象" class="headerlink" title="3.基于原型创建对象"></a>3.基于原型创建对象</h4><p>不在构造函数中定义属性，而是直接添加到原型中，新对象的属性和方法都是共享的。prototype属性是一个指针。</p>
-<p>缺点：无法传参，如果包含引用类型的值，改变其中一个，其他实例均会改变<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    person.prototype.name = <span class="string">"abc"</span>;</span><br><span class="line">    person.prototype.age = <span class="number">29</span>;</span><br><span class="line">    person.prototype.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        alert(<span class="keyword">this</span>.name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> person1 = <span class="keyword">new</span> Person();</span><br><span class="line">person1.sayName();    <span class="comment">//"abc"</span></span><br><span class="line"><span class="keyword">var</span> person2 = <span class="keyword">new</span> Person();</span><br></pre></td></tr></table></figure></p>
-<h4 id="4-组合使用构造函数与原型"><a href="#4-组合使用构造函数与原型" class="headerlink" title="4.组合使用构造函数与原型"></a>4.组合使用构造函数与原型</h4><p>想要实例对象都拥有的拷贝的属性写在构造函数，方法或者想要实例对象都可以修改的属性写在原型上<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name,age</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.age = age;</span><br><span class="line">    <span class="keyword">this</span>.friends = [<span class="string">"aaa"</span>,<span class="string">"bbb"</span>];<span class="comment">//并不共享该数组对象</span></span><br><span class="line">&#125;</span><br><span class="line">Person.prototype.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    alert(<span class="keyword">this</span>.name);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h4 id="5-动态原型模式"><a href="#5-动态原型模式" class="headerlink" title="5.动态原型模式"></a>5.动态原型模式</h4><p>只有在sayName方法不存在的时候，才会动态在原型上添加sayName，并且更新到所有实例对象的属性上<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name,age</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.age = age;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">typeof</span> <span class="keyword">this</span>.name != <span class="string">"function"</span>)&#123;</span><br><span class="line">        Person.prototype.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            alert(<span class="keyword">this</span>.name);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1660,7 +1646,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>

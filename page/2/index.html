@@ -248,6 +248,140 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/19/20-July/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/07/19/20-July/" itemprop="url">
+                  bind js创建对象 网络
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-19T22:09:01+08:00">
+                2018-07-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="bind（Function-prototype-bind）"><a href="#bind（Function-prototype-bind）" class="headerlink" title="bind（Function.prototype.bind）"></a>bind（Function.prototype.bind）</h2><p>f.bind(someObject)会创建一个与f具有相同函数体和作用域的函数，但是在这个函数中，this被永久地绑定到了bind的第一个参数，无论这个函数是如何调用的<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span> a&#125;;</span><br><span class="line"><span class="keyword">var</span> g = f.bind(&#123;<span class="attr">a</span>:<span class="string">"aaa"</span>&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(g()); <span class="comment">// aaa</span></span><br><span class="line"><span class="keyword">var</span> h = f.bind(&#123;<span class="attr">a</span>:<span class="string">"bbb"</span>&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(h()); <span class="comment">// bbb </span></span><br><span class="line"><span class="keyword">var</span> j = g.bind(&#123;<span class="attr">a</span>:<span class="string">"ccc"</span>&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(j()); <span class="comment">//aaa  失败</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="互联网是如何工作的"><a href="#互联网是如何工作的" class="headerlink" title="互联网是如何工作的"></a>互联网是如何工作的</h2><p>1.电脑通过连接到路由，路由（小电脑）向“猫”将网络信息变成电话设施可以处理的信息，将自己家和隔壁邻居联系起来。</p>
+<p>2.把信息从外面的网络发送到ISP</p>
+<p>3.任何连接到网络中的电脑都需要有一个唯一的地址去标记他，叫做“IP地址”,一般给IP地址取一个容易阅读的域名，如“google”</p>
+<h2 id="浏览器的同源策略"><a href="#浏览器的同源策略" class="headerlink" title="浏览器的同源策略"></a>浏览器的同源策略</h2><p>1.如果两个页面的协议，端口和域名都相同，就具有相同的源<br>2.a标签打开的网页一般会继承打开a标签所在url的文档的源</p>
+<h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p>1.内容包括：协议，域名，端口号，文件路径，参数，锚点<br>2.使用URL的地方：a标签，外部css和js的link和script标签，video，img，audio标签，iframe元素</p>
+<h2 id="js创建对象方法的区别"><a href="#js创建对象方法的区别" class="headerlink" title="js创建对象方法的区别"></a>js创建对象方法的区别</h2><h4 id="1-工厂创建"><a href="#1-工厂创建" class="headerlink" title="1.工厂创建"></a>1.工厂创建</h4><p>在构造函数内新建对象，增加属性后返回，不需要new。</p>
+<p>缺点：多个实例之间没有关系，无法确定对象的类型（都是Object的实例）。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createPerson</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> o = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">    o.name = <span class="string">"abc"</span>;</span><br><span class="line">    o.age = <span class="number">18</span>;</span><br><span class="line">    o.say = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> o;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="2-构造函数"><a href="#2-构造函数" class="headerlink" title="2.构造函数"></a>2.构造函数</h4><p>利用this在实例化后会指向实例化的对象，从而在构造函数内对this加属性，即对实例化对象加属性。</p>
+<p>缺点：构造函数里的方法都要在每个实例重新创建，浪费内存。可以通过将方法写到函数外部解决。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name,age</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.age = age;</span><br><span class="line">    <span class="keyword">this</span>.say = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="comment">//code...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> p1 = <span class="keyword">new</span> Person(<span class="string">"abc"</span>,<span class="number">18</span>);</span><br></pre></td></tr></table></figure></p>
+<h4 id="3-基于原型创建对象"><a href="#3-基于原型创建对象" class="headerlink" title="3.基于原型创建对象"></a>3.基于原型创建对象</h4><p>不在构造函数中定义属性，而是直接添加到原型中，新对象的属性和方法都是共享的。prototype属性是一个指针。</p>
+<p>缺点：无法传参，如果包含引用类型的值，改变其中一个，其他实例均会改变<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    person.prototype.name = <span class="string">"abc"</span>;</span><br><span class="line">    person.prototype.age = <span class="number">29</span>;</span><br><span class="line">    person.prototype.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        alert(<span class="keyword">this</span>.name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> person1 = <span class="keyword">new</span> Person();</span><br><span class="line">person1.sayName();    <span class="comment">//"abc"</span></span><br><span class="line"><span class="keyword">var</span> person2 = <span class="keyword">new</span> Person();</span><br></pre></td></tr></table></figure></p>
+<h4 id="4-组合使用构造函数与原型"><a href="#4-组合使用构造函数与原型" class="headerlink" title="4.组合使用构造函数与原型"></a>4.组合使用构造函数与原型</h4><p>想要实例对象都拥有的拷贝的属性写在构造函数，方法或者想要实例对象都可以修改的属性写在原型上<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name,age</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.age = age;</span><br><span class="line">    <span class="keyword">this</span>.friends = [<span class="string">"aaa"</span>,<span class="string">"bbb"</span>];<span class="comment">//并不共享该数组对象</span></span><br><span class="line">&#125;</span><br><span class="line">Person.prototype.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    alert(<span class="keyword">this</span>.name);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="5-动态原型模式"><a href="#5-动态原型模式" class="headerlink" title="5.动态原型模式"></a>5.动态原型模式</h4><p>只有在sayName方法不存在的时候，才会动态在原型上添加sayName，并且更新到所有实例对象的属性上<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name,age</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.age = age;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">typeof</span> <span class="keyword">this</span>.name != <span class="string">"function"</span>)&#123;</span><br><span class="line">        Person.prototype.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            alert(<span class="keyword">this</span>.name);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/19/19-July/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1170,7 +1304,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
