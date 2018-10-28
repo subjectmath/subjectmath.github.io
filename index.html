@@ -248,6 +248,140 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/29/Vue-router/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/10/29/Vue-router/" itemprop="url">
+                  Vue-router
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-29T00:10:25+08:00">
+                2018-10-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="组件映射路由，实现单页跳转"><a href="#组件映射路由，实现单页跳转" class="headerlink" title="组件映射路由，实现单页跳转"></a>组件映射路由，实现单页跳转</h3><h5 id="1-router-link相当于一个a标签，to后面是要跳到的路径，导航的footer-vue组件"><a href="#1-router-link相当于一个a标签，to后面是要跳到的路径，导航的footer-vue组件" class="headerlink" title="1.router-link相当于一个a标签，to后面是要跳到的路径，导航的footer.vue组件"></a>1.router-link相当于一个a标签，to后面是要跳到的路径，导航的footer.vue组件</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;router-link to=&quot;/home&quot;&gt;&lt;router-link&gt;</span><br><span class="line">    &lt;router-link to=&quot;/login&quot;&gt;&lt;router-link&gt;</span><br><span class="line">    //所有匹配到的组件渲染在下面，路由出口</span><br><span class="line">    &lt;router-view/&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+<h5 id="2-使用路由"><a href="#2-使用路由" class="headerlink" title="2.使用路由"></a>2.使用路由</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import Vue from &apos;vue&apos;</span><br><span class="line">import VueRouter from &apos;vue-router&apos;</span><br><span class="line">Vue.use(VueRouter)</span><br></pre></td></tr></table></figure>
+<h5 id="3-引入路由跳转对应组件"><a href="#3-引入路由跳转对应组件" class="headerlink" title="3.引入路由跳转对应组件"></a>3.引入路由跳转对应组件</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import home from &apos;./components/home&apos;</span><br><span class="line">import login from &apos;./components/login&apos;</span><br></pre></td></tr></table></figure>
+<h5 id="4-定义路由，创建路由实例"><a href="#4-定义路由，创建路由实例" class="headerlink" title="4.定义路由，创建路由实例"></a>4.定义路由，创建路由实例</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">routes:[</span><br><span class="line">    &#123;</span><br><span class="line">        path:&apos;/&apos;,</span><br><span class="line">        name:&apos;home&apos;,</span><br><span class="line">        component:home</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        path:&apos;/login&apos;,</span><br><span class="line">        name:&apos;login&apos;,</span><br><span class="line">        component:login</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br><span class="line">const router = new VueRouter(&#123;</span><br><span class="line">    routes</span><br><span class="line">    //相当于routes:routes</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h5 id="5-挂载"><a href="#5-挂载" class="headerlink" title="5.挂载"></a>5.挂载</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const app = new Vue(&#123;</span><br><span class="line">    el:&quot;#app&quot;  //后面就不需要$mount(&quot;#app&quot;)挂载了</span><br><span class="line">    router</span><br><span class="line">&#125;).$mount(&apos;#app&apos;)</span><br></pre></td></tr></table></figure>
+<h3 id="懒加载"><a href="#懒加载" class="headerlink" title="懒加载"></a>懒加载</h3><h5 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h5><ol>
+<li>解决样式冲突问题</li>
+<li>解决页面资源加载问题</li>
+<li>路由被访问是才加载对应组件，提高应用加载效率<h5 id="把import组件变成异步组件"><a href="#把import组件变成异步组件" class="headerlink" title="把import组件变成异步组件"></a>把import组件变成异步组件</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const home = resolve =&gt; require([&apos;./home.vue&apos;], resolve)</span><br><span class="line">const login = resolve =&gt; require([&apos;./login.vue&apos;], resolve)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="Router构造详细配置"><a href="#Router构造详细配置" class="headerlink" title="Router构造详细配置"></a>Router构造详细配置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">const router = new VueRouter(&#123;</span><br><span class="line">    mode:&apos;history&apos;,</span><br><span class="line">    base:&apos;__dirname&apos;,</span><br><span class="line">    linkActiveClass:&apos;link-active&apos;,</span><br><span class="line">    scrollBehavior(to, from, savedPosition)&#123; //按下后退前进按钮时，让页面滚动到指定（顶部）位置</span><br><span class="line">        if(savedPosition)&#123;</span><br><span class="line">            return savedPosition</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            return&#123; x:0, y:0 &#125;  </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    routes:routes</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="完整路由代码"><a href="#完整路由代码" class="headerlink" title="完整路由代码"></a>完整路由代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">const scrollBehavior = (to, from, savedPosition) =&gt; &#123;</span><br><span class="line">    if(savedPosition)&#123;</span><br><span class="line">        return savedPosition</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        return &#123; x:0, y:0 &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">routes:[</span><br><span class="line">    &#123;</span><br><span class="line">        path:&apos;/&apos;,</span><br><span class="line">        name:&apos;home&apos;,</span><br><span class="line">        component:function(resolve)&#123;</span><br><span class="line">            return require([&apos;./components/home&apos;],resolve)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        path:&apos;/login&apos;,</span><br><span class="line">        name:&apos;login&apos;,</span><br><span class="line">        component:function(resolve)&#123;</span><br><span class="line">            return require([&apos;./components/login&apos;],resolve)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br><span class="line">//创建一个路由器实例，并且配置路由规则</span><br><span class="line">const router = new VueRouter(&#123;</span><br><span class="line">    mode:&apos;history&apos;,</span><br><span class="line">    base:__dirname,</span><br><span class="line">    linkActiveClass:&apos;link-active&apos;,</span><br><span class="line">    scrollBehavior,</span><br><span class="line">    routes</span><br><span class="line">&#125;);</span><br><span class="line">//创建和挂载根实例</span><br><span class="line">const app = new Vue(&#123;</span><br><span class="line">    router:router,</span><br><span class="line">    render:h =&gt; h(App)</span><br><span class="line">&#125;).$mount(&quot;#app&quot;);</span><br></pre></td></tr></table></figure>
+<h3 id="路由导航条实例"><a href="#路由导航条实例" class="headerlink" title="路由导航条实例"></a>路由导航条实例</h3><h5 id="router-link的其他表现形式"><a href="#router-link的其他表现形式" class="headerlink" title="router-link的其他表现形式"></a>router-link的其他表现形式</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;router-link to=&quot;/mine&quot; tag=&quot;li&quot; exact&gt;   //tag指定标签名,exact不会污染嵌套路由</span><br><span class="line">    &lt;i class=&quot;icon-nav icon-nav5&quot;&gt;&lt;/i&gt;&lt;span&gt;我的&lt;span&gt;</span><br><span class="line">&lt;router-link&gt;</span><br><span class="line">渲染结果↓↓</span><br><span class="line">&lt;li&gt;</span><br><span class="line">    &lt;i class=&quot;icon-nav icon-nav5&quot;&gt;&lt;/i&gt;</span><br><span class="line">    &lt;span&gt;我的&lt;/span&gt;</span><br><span class="line">&lt;/li&gt;</span><br></pre></td></tr></table></figure>
+<h5 id="为当前路由添加激活态"><a href="#为当前路由添加激活态" class="headerlink" title="为当前路由添加激活态"></a>为当前路由添加激活态</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">.router-link-active&#123;</span><br><span class="line">    .icon-nav5&#123;</span><br><span class="line">        background-img:url(&apos;../img/icons.png&apos;);</span><br><span class="line">        color:#red;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/12/Vue生命周期/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1464,139 +1598,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/21/json/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2018/07/21/json/" itemprop="url">
-                  json
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-21T23:54:51+08:00">
-                2018-07-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li>json属性名必须用双引号括起来，最后一个属性后面不能有逗号</li>
-<li>禁止出现前导零，如果有小数点则后面至少跟一位数字</li>
-<li>json数字和字符串中不允许有多余的空格</li>
-<li>最重要的两个方法<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">JSON</span>.stringify(对象，函数/数组);</span><br><span class="line"><span class="built_in">JSON</span>.parse(字符串，函数);</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h2 id="JSON-stringify"><a href="#JSON-stringify" class="headerlink" title="JSON.stringify()"></a>JSON.stringify()</h2><p>1.能用单引号的地方都用双引号就对了，所有函数的原型，原型成员，函数定义的方法被忽略<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> book = &#123;<span class="attr">title</span>:<span class="string">"js-learning"</span>,</span><br><span class="line">            arr:[<span class="string">'a'</span>,<span class="string">'b'</span>],</span><br><span class="line">            num:<span class="number">12</span>,</span><br><span class="line">            fn:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'abc'</span>)</span><br><span class="line">            &#125;&#125;;</span><br><span class="line"><span class="keyword">var</span> t = <span class="built_in">JSON</span>.stringify(book);</span><br><span class="line"><span class="built_in">console</span>.log(t);     <span class="comment">//&#123;"title":"js-learning","arr":["a","b"],"num":12&#125;</span></span><br></pre></td></tr></table></figure></p>
-<p>2.第一个参数为想要变成json的对象，第二个为过滤器<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> jsonText = <span class="built_in">JSON</span>.stringify(book, <span class="function"><span class="keyword">function</span>(<span class="params">key,value</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">switch</span>(key)&#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">"arr"</span>:</span><br><span class="line">            <span class="keyword">return</span> value.join(<span class="string">","</span>)</span><br><span class="line">        <span class="keyword">case</span> <span class="string">"num"</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">undefined</span>;</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            <span class="keyword">return</span> value;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(jsonText);   <span class="comment">//&#123;"title":"js-learning","arr":"a,b"&#125;</span></span><br></pre></td></tr></table></figure></p>
-<p>3.选择要指定取出的属性名的数组作为第二个参数，会只返回这些属性还有对应的值<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> jsonText = <span class="built_in">JSON</span>.stringify(book,[<span class="string">"title"</span>]);   <span class="comment">//一个也要是数组</span></span><br><span class="line"><span class="built_in">console</span>.log(jsonText);           <span class="comment">//&#123;"title":"js-learning"&#125;</span></span><br></pre></td></tr></table></figure></p>
-<p>4.字符串缩进（第三个参数）</p>
-<h2 id="JSON-parse"><a href="#JSON-parse" class="headerlink" title="JSON.parse()"></a>JSON.parse()</h2><p>1.不加还原函数<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> book = &#123;<span class="attr">date</span>:<span class="keyword">new</span> <span class="built_in">Date</span>(<span class="number">2011</span>,<span class="number">11</span>,<span class="number">1</span>)&#125;;</span><br><span class="line"><span class="keyword">var</span> jsonText = <span class="built_in">JSON</span>.stringify(book);</span><br><span class="line"><span class="keyword">var</span> bookCopy = <span class="built_in">JSON</span>.parse(jsonText);</span><br><span class="line"><span class="built_in">console</span>.log(jsonText);    <span class="comment">//&#123;"date":"2011-11-30T16:00:00.000Z"&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(bookCopy);    <span class="comment">//&#123;date: "2011-11-30T16:00:00.000Z"&#125;</span></span><br></pre></td></tr></table></figure></p>
-<p>2.加了还原函数<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> bookCopy = <span class="built_in">JSON</span>.parse(jsonText,<span class="function"><span class="keyword">function</span>(<span class="params">key,value</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(key == <span class="string">"date"</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Date</span>(value);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> value;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);                   </span><br><span class="line"><span class="built_in">console</span>.log(bookCopy);        <span class="comment">//&#123;date: Thu Dec 01 2011 00:00:00 GMT+0800 (中国标准时间)&#125;</span></span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1646,7 +1647,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-count">18</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
