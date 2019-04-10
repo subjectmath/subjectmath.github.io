@@ -248,6 +248,151 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/10/从jQuery看js的链式调用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2019/04/10/从jQuery看js的链式调用/" itemprop="url">
+                  从jQuery看js的链式调用
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-10T01:43:14+08:00">
+                2019-04-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="jQuery的实现"><a href="#jQuery的实现" class="headerlink" title="jQuery的实现"></a>jQuery的实现</h2><h4 id="1-深入jq"><a href="#1-深入jq" class="headerlink" title="1.深入jq"></a>1.深入jq</h4><blockquote>
+<p>jQuery.fn以这种形式设定jq最核心的对象，其实也只是为了减少多定义一个变量而已，感觉没什么实际性用处</p>
+<ol>
+<li>jq使用的选择器$返回的是一个自定义的jq对象<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var $div = $(&apos;#div&apos;);//$和jQuery是等价的</span><br><span class="line">console.log(typeof $div)//object</span><br><span class="line">console.log($div.prototype);//undefined</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</blockquote>
+<ol start="2">
+<li><p>jq实际上并非直接由jQuery函数返回，而是借用jQuery.fn这个对象</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log($div.constructor);</span><br><span class="line"><span class="comment">//jq对象实际的构造函数</span></span><br><span class="line"><span class="comment">// jQuery = function( selector, context ) &#123;</span></span><br><span class="line"><span class="comment">//     return new jQuery.fn.init( selector, context );</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>所生成的jq对象实际上是jQuery.fn.init构造函数的一个实例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> init = jQuery.fn.init = <span class="function"><span class="keyword">function</span>(<span class="params"> selector, context, root </span>) </span>&#123;</span><br><span class="line">    <span class="comment">//对html的验证</span></span><br><span class="line">    <span class="comment">//理想的话这里就要返回jq实例对象出去</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将jQuery.fn.init这个构造函数的原型对象指向jQuery.fn</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">init.prototype = jQuery.fn;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>而实际上jQuery.fn这个对象是jq最核心的部分，在设计jq的时候，是将jq对象的，由于构造函数init的原型指向jQuery.fn，因此挂载在它上面的方法都为init实例化出来的jq对象所共用</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">jQuery.fn = jQuery.prototype = &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">constructor</span>:jQuery,</span><br><span class="line">    //实例化对象是在构造函数执行时创建的，防止因为new操作符的使用让<span class="keyword">constructor</span>指向jQuery.fn.init</span><br><span class="line">    </span><br><span class="line">    css:funtion(key,value)&#123;&#125;,</span><br><span class="line">    html:<span class="function"><span class="keyword">function</span>(<span class="params">value</span>)</span>&#123;&#125;，</span><br><span class="line">    push:[].push,</span><br><span class="line">    sort:[].sort</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log($div <span class="keyword">instanceof</span> jQuery);<span class="comment">//true</span></span><br><span class="line"></span><br><span class="line">$div.html(<span class="string">`&lt;p&gt;I love HuiHui.&lt;/p&gt;`</span>)</span><br><span class="line"><span class="comment">//实际上是调用原型链上的方法</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>jq中针对选择器的不同使用不同的方法获取元素，主要是对selector进行判断（对应第3点）</p>
+</li>
+<li>jq使用jQuery.extend方法对jq对象进行扩展，将插件扩展统一到 $.fn.xxx 这一个接口，方便使用<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//jq的extend实现</span></span><br><span class="line">jQuery.extend = jQuery.fn.extend = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> target = <span class="built_in">arguments</span>[<span class="number">0</span>];</span><br><span class="line">    <span class="comment">//遍历参数中的扩展对象，并且遍历其属性，拓展源对象</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">//将（扩展后）源对象返回</span></span><br><span class="line">    <span class="keyword">return</span> target;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//没有返回值的话可以实现下jq的链式调用</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br><span class="line">jQuery.fn.extend(&#123;</span><br><span class="line">    getVersion:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.version;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 插件扩展</span></span><br><span class="line">$.fn.getNodeName = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">//code : alert(this[0].nodeName)</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/09/Web-Worker/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1448,135 +1593,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/24/jQuery/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2018/07/24/jQuery/" itemprop="url">
-                  jQuery
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-24T19:41:01+08:00">
-                2018-07-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="两种淡出块的方式"><a href="#两种淡出块的方式" class="headerlink" title="两种淡出块的方式"></a>两种淡出块的方式</h3><p>jQuery中 <figure class="highlight plain"><figcaption><span>方法允许渐变为给定的不透明度，并且如果把透明度调成0，也会存在在文档流里面，而 ```fadeOut()``` 会在文档流里消失</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">```javascript</span><br><span class="line">$(&quot;#div1&quot;).fadeTo(3000,0);</span><br><span class="line">$(&quot;#div2&quot;).fadeOut(6000);</span><br><span class="line">$(&quot;#div3&quot;).fadeOut(12000);</span><br><span class="line">//div1消失时，div2与div3仍然在原来的位置</span><br><span class="line">//div2消失时，div3代替了div2的位置</span><br></pre></td></tr></table></figure></p>
-<h3 id="使用jQ创建标签"><a href="#使用jQ创建标签" class="headerlink" title="使用jQ创建标签"></a>使用jQ创建标签</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> txt1=$(<span class="string">"&lt;p&gt;&lt;/p&gt;"</span>).text(<span class="string">"Text."</span>);<span class="comment">//创建p标签</span></span><br><span class="line">$(<span class="string">"body"</span>).append(txt1);<span class="comment">//加到body里</span></span><br><span class="line"><span class="keyword">var</span> txt2=$(<span class="string">"p"</span>).text(<span class="string">"Text."</span>);<span class="comment">//选择p标签设置内容</span></span><br></pre></td></tr></table></figure>
-<h3 id="jq设定css属性"><a href="#jq设定css属性" class="headerlink" title="jq设定css属性"></a>jq设定css属性</h3><p>jq设定css属性时，一个属性时，属性名和值用逗号隔开，两个以上之间用冒号，不同属性之间用逗号</p>
-<h3 id="eq-方法"><a href="#eq-方法" class="headerlink" title="eq()方法"></a>eq()方法</h3><p>eq() 方法返回被选元素中带有指定索引号的元素，索引号从 0 开始</p>
-<h3 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"ul li:first"</span>)    <span class="comment">//选取第一个&lt;ul&gt;元素的第一个&lt;li&gt;元素</span></span><br><span class="line">$(<span class="string">"ul li:first-child"</span>)    <span class="comment">//选取每个 &lt;ul&gt; 元素的第一个&lt;li&gt;元素</span></span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1621,7 +1642,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">21</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -1676,7 +1697,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
