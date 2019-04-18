@@ -248,7 +248,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/10/从jQuery看js的链式调用/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/10/从jQuery看js原型链/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -270,7 +270,7 @@
             
               
                 
-                <a class="post-title-link" href="/2019/04/10/从jQuery看js的链式调用/" itemprop="url">
+                <a class="post-title-link" href="/2019/04/10/从jQuery看js原型链/" itemprop="url">
                   从jQuery看js的链式调用
                 </a>
               
@@ -327,12 +327,11 @@
           
             <h2 id="jQuery的实现"><a href="#jQuery的实现" class="headerlink" title="jQuery的实现"></a>jQuery的实现</h2><h4 id="1-深入jq"><a href="#1-深入jq" class="headerlink" title="1.深入jq"></a>1.深入jq</h4><blockquote>
 <p>jQuery.fn以这种形式设定jq最核心的对象，其实也只是为了减少多定义一个变量而已，感觉没什么实际性用处</p>
-<ol>
-<li>jq使用的选择器$返回的是一个自定义的jq对象<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var $div = $(&apos;#div&apos;);//$和jQuery是等价的</span><br><span class="line">console.log(typeof $div)//object</span><br><span class="line">console.log($div.prototype);//undefined</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
 </blockquote>
-<ol start="2">
+<ol>
+<li><p>jq使用的选择器$返回的是一个自定义的jq对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var $div = $(&apos;#div&apos;);//$和jQuery是等价的</span><br><span class="line">console.log(typeof $div)//object</span><br><span class="line">console.log($div.prototype);//undefined</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>jq实际上并非直接由jQuery函数返回，而是借用jQuery.fn这个对象</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log($div.constructor);</span><br><span class="line"><span class="comment">//jq对象实际的构造函数</span></span><br><span class="line"><span class="comment">// jQuery = function( selector, context ) &#123;</span></span><br><span class="line"><span class="comment">//     return new jQuery.fn.init( selector, context );</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br></pre></td></tr></table></figure>
 </li>
