@@ -248,6 +248,199 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/24/node的基本数据处理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2019/04/24/node的基本数据处理/" itemprop="url">
+                  node的基本数据处理
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-24T23:09:59+08:00">
+                2019-04-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="1-node的基本文件操作"><a href="#1-node的基本文件操作" class="headerlink" title="1.node的基本文件操作"></a>1.node的基本文件操作</h3><ol>
+<li>读文件(默认输出buffer)<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"><span class="comment">//下面的data是buffer对象</span></span><br><span class="line">fs.readFile(<span class="string">'./a.txt'</span>,(err,data)=&gt;&#123;</span><br><span class="line">    <span class="keyword">if</span>(err)<span class="keyword">throw</span> err</span><br><span class="line">    <span class="built_in">console</span>.log(data)<span class="comment">//buffer对象</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">//直接转化utf-8格式</span></span><br><span class="line">fs.readFile(<span class="string">'./index.js'</span>,<span class="string">'utf8'</span>,(err,data)=&gt;&#123;</span><br><span class="line">    <span class="keyword">if</span>(err)<span class="keyword">throw</span> err</span><br><span class="line">    <span class="built_in">console</span>.log(data)<span class="comment">//正常文件</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="2-写文件-字符串，buffer对象都可写入，默认utf8正常编码的文件"><a href="#2-写文件-字符串，buffer对象都可写入，默认utf8正常编码的文件" class="headerlink" title="2. 写文件(字符串，buffer对象都可写入，默认utf8正常编码的文件)"></a>2. 写文件(字符串，buffer对象都可写入，默认utf8正常编码的文件)</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.var content = Buffer.from('this is a test.')</span></span><br><span class="line"><span class="comment">//2.var content = 'content'</span></span><br><span class="line">fs.writeFile(<span class="string">'./a.txt'</span>, content, err=&gt;&#123;</span><br><span class="line">  <span class="keyword">if</span>(err)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'失败'</span>, err);</span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'成功'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="3-基本的服务"><a href="#3-基本的服务" class="headerlink" title="3. 基本的服务"></a>3. 基本的服务</h3><ol>
+<li>（多个或一个）write和（一个）end搭配，将文件写进页面里（默认显示字符串，要改变格式就去修改头部）<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http=<span class="built_in">require</span>(<span class="string">'http'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> server=http.createServer(<span class="function"><span class="keyword">function</span> (<span class="params">req, res</span>)</span>&#123;</span><br><span class="line">  <span class="comment">//res.writeHead(200,&#123;'Content-Type':'text/html'&#125;);</span></span><br><span class="line">  res.write(<span class="string">'abc'</span>);</span><br><span class="line">  res.write(<span class="string">'&lt;h1&gt;ggmm&lt;/h1&gt;'</span>);</span><br><span class="line">  res.end();</span><br><span class="line">&#125;);</span><br><span class="line">server.listen(<span class="number">8080</span>);</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="4-根据网页地址框搜索资源"><a href="#4-根据网页地址框搜索资源" class="headerlink" title="4.根据网页地址框搜索资源"></a>4.根据网页地址框搜索资源</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http=<span class="built_in">require</span>(<span class="string">'http'</span>);</span><br><span class="line"><span class="keyword">const</span> fs=<span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> server=http.createServer(<span class="function"><span class="keyword">function</span> (<span class="params">req, res</span>)</span>&#123;</span><br><span class="line">  <span class="comment">//localhost:8080/1.html</span></span><br><span class="line">  <span class="built_in">console</span>.log(req.url);</span><br><span class="line">  <span class="comment">//req.url =&gt;'/1.html'</span></span><br><span class="line">  <span class="comment">//=&gt;'www/1.html'(需要根据网络地址寻找所需资源，调用node的读取文件api)</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="comment">//因为我们的文件都放在www文件夹下面了</span></span><br><span class="line">  fs.readFile(<span class="string">`www/<span class="subst">$&#123;req.url&#125;</span>`</span>, (err, buffer)=&gt;&#123;</span><br><span class="line">    <span class="keyword">if</span>(err)&#123;</span><br><span class="line">      res.writeHeader(<span class="number">404</span>);</span><br><span class="line">      res.write(<span class="string">'Not Found'</span>);</span><br><span class="line">      res.end();</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">      res.write(buffer);</span><br><span class="line">      res.end();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line">server.listen(<span class="number">8080</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="5-前端的基本表单提交样式"><a href="#5-前端的基本表单提交样式" class="headerlink" title="5.前端的基本表单提交样式"></a>5.前端的基本表单提交样式</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">/*get*/</span><br><span class="line">    <span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"http://localhost:8080/aaa"</span> <span class="attr">method</span>=<span class="string">"get"</span>&gt;</span></span><br><span class="line">      用户：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"username"</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">      密码：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"password"</span> <span class="attr">name</span>=<span class="string">"password"</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"提交"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line">/*post*/</span><br><span class="line">    <span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"http://localhost:8080/bbb"</span> <span class="attr">method</span>=<span class="string">"post"</span>&gt;</span></span><br><span class="line">      用户：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"username"</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">      密码：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"password"</span> <span class="attr">name</span>=<span class="string">"password"</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"提交"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="6-根据表单创建的服务"><a href="#6-根据表单创建的服务" class="headerlink" title="6.根据表单创建的服务"></a>6.根据表单创建的服务</h3><p>1-1. 对get的响应（querystring模块专门处理get请求）<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http=<span class="built_in">require</span>(<span class="string">'http'</span>);</span><br><span class="line"><span class="keyword">const</span> querystring=<span class="built_in">require</span>(<span class="string">'querystring'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> server=http.createServer(<span class="function">(<span class="params">req, res</span>)=&gt;</span>&#123;</span><br><span class="line">  <span class="comment">//console.log(req.url)     /aaa?username=123&amp;password=321</span></span><br><span class="line">  <span class="keyword">let</span> [url, query]=req.url.split(<span class="string">'?'</span>);</span><br><span class="line">  <span class="keyword">let</span> get=querystring.parse(query);<span class="comment">// 将字符串转换为对象</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">console</span>.log(url, get);<span class="comment">//  /aaa  &#123; username: '123', password: '321' &#125;</span></span><br><span class="line">&#125;);</span><br><span class="line">server.listen(<span class="number">8080</span>);</span><br></pre></td></tr></table></figure></p>
+<p>1-2. 对get的响应（url模块处理get请求）<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http=<span class="built_in">require</span>(<span class="string">'http'</span>);</span><br><span class="line"><span class="keyword">const</span> url=<span class="built_in">require</span>(<span class="string">'url'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> server=http.createServer(<span class="function">(<span class="params">req, res</span>)=&gt;</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> &#123;pathname, query&#125;=url.parse(req.url, <span class="literal">true</span>);</span><br><span class="line">  <span class="comment">//参数true的作用，是使得返回的 URL 对象的 query 属性是一个使用 querystring 模块的 parse() 生成的对象，默认是false，返回字符串</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">console</span>.log(pathname, query);<span class="comment">//  /aaa  &#123; username: '123', password: '321' &#125;</span></span><br><span class="line">&#125;);</span><br><span class="line">server.listen(<span class="number">8080</span>);</span><br></pre></td></tr></table></figure></p>
+<ol start="2">
+<li><p>对post的响应</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http=<span class="built_in">require</span>(<span class="string">'http'</span>);</span><br><span class="line"><span class="keyword">const</span> querystring=<span class="built_in">require</span>(<span class="string">'querystring'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> server=http.createServer(<span class="function">(<span class="params">req, res</span>)=&gt;</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> arr=[];</span><br><span class="line">  req.on(<span class="string">'data'</span>, buffer=&gt;&#123;</span><br><span class="line">    arr.push(buffer);</span><br><span class="line">  &#125;);</span><br><span class="line">  req.on(<span class="string">'end'</span>, ()=&gt;&#123;</span><br><span class="line">    <span class="keyword">let</span> buffer=Buffer.concat(arr);</span><br><span class="line">    <span class="comment">//变成字符串，再变成对象</span></span><br><span class="line">    <span class="keyword">let</span> post=querystring.parse(buffer.toString());</span><br><span class="line">    <span class="built_in">console</span>.log(post);<span class="comment">//  &#123; username: '123', password: '321' &#125;</span></span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line">server.listen(<span class="number">8080</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>整合两种请求<br><code>`</code>js<br>const http=require(‘http’);<br>const url=require(‘url’);<br>const querystring=require(‘querystring’);<br>const fs=require(‘fs’);</p>
+</li>
+</ol>
+<p>let users={};//从后台拿到所有的用户？</p>
+<p>http.createServer((req, res)=&gt;{<br>  let path=’’, get={}, post={};<br>  //请求方式<br>  if(req.method==’GET’){<br>    let {pathname, query}=url.parse(req.url, true);</p>
+<pre><code>path=pathname;
+get=query;
+complete();
+</code></pre><p>  }else if(req.method==’POST’){<br>    path=req.url;</p>
+<pre><code>let arr=[];
+req.on(&apos;data&apos;, buffer=&gt;{
+  arr.push(buffer);
+});
+req.on(&apos;end&apos;, ()=&gt;{
+  let buffer=Buffer.concat(arr);
+
+  post=querystring.parse(buffer.toString());
+  complete();
+});
+</code></pre><p>  }</p>
+<p>  function complete(){<br>    if(path==’/reg’){<br>      let {username, password}=get;</p>
+<pre><code>  if(users[username]){
+    res.write(JSON.stringify({error: 1, msg: &apos;此用户名已存在&apos;}));
+    res.end();
+  }else{
+    users[username]=password;
+
+    res.write(JSON.stringify({error: 0, msg: &apos;&apos;}));
+    res.end();
+  }
+}else if(path==&apos;/login&apos;){
+  let {username, password}=get;
+
+  if(!users[username]){
+    res.write(JSON.stringify({error: 1, msg: &apos;找不到此用户&apos;}));
+    res.end();
+  }else if(users[username]!=password){
+    res.write(JSON.stringify({error: 1, msg: &apos;密码不对&apos;}));
+    res.end();
+  }else{
+    res.write(JSON.stringify({error: 0, msg: &apos;&apos;}));
+    res.end();
+  }
+}else{
+  fs.readFile(`www${path}`, (err, buffer)=&gt;{
+    if(err){
+      res.writeHeader(404);
+      res.write(&apos;Not Found&apos;);
+      res.end();
+    }else{
+      res.write(buffer);
+      res.end();
+    }
+  });
+}
+</code></pre><p>  }<br>}).listen(8080);</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/10/从jQuery看js原型链/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1469,129 +1662,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/28/this与event-target/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2018/07/28/this与event-target/" itemprop="url">
-                  this与event.target
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-28T13:15:38+08:00">
-                2018-07-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="dom对象中this与event-target区别"><a href="#dom对象中this与event-target区别" class="headerlink" title="dom对象中this与event.target区别"></a>dom对象中this与event.target区别</h2><p>1.this是事件冒泡，从内到外this的值都是在改变，向外触发函数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;div&quot; onclick=&quot;divclick(this)&quot; style=&quot;width:100px;height: 100px;background-color: pink&quot;&gt;div</span><br><span class="line">    &lt;a id=&quot;a&quot; onclick=&quot;aclick(this)&quot; style=&quot;display: block;width: 50px;height: 50px;background-color: orange;&quot;&gt;a&lt;/a&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    function divclick(item)&#123;</span><br><span class="line">        console.log(item.id);</span><br><span class="line">    &#125;</span><br><span class="line">    function aclick(item)&#123;</span><br><span class="line">        console.log(item.id);</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">//点a触发   //a     //div</span><br><span class="line">//点触发       //div</span><br></pre></td></tr></table></figure>
-<p>2.event.target代表的是触发事件的dom对象，是静态不变的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;div&quot; onclick=&quot;divclick()&quot; style=&quot;width:100px;height: 100px;background-color: pink&quot;&gt;div</span><br><span class="line">    &lt;a id=&quot;a&quot; onclick=&quot;aclick()&quot; style=&quot;display: block;width: 50px;height: 50px;background-color: orange;&quot;&gt;a&lt;/a&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    function divclick()&#123;</span><br><span class="line">        console.log(event.target.id);</span><br><span class="line">    &#125;</span><br><span class="line">    function aclick()&#123;</span><br><span class="line">        console.log(event.target.id);</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">//点a触发   //a     //a</span><br><span class="line">//点divchufa       //div</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1641,7 +1711,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-count">22</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -1654,7 +1724,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">tags</span>
               
             </div>
