@@ -248,6 +248,141 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/26/node处理文件数据与跨域问题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2019/04/26/node处理文件数据与跨域问题/" itemprop="url">
+                  node处理文件数据与跨域问题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-26T14:17:10+08:00">
+                2019-04-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="1-基本的post的html"><a href="#1-基本的post的html" class="headerlink" title="1. 基本的post的html"></a>1. 基本的post的html</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"http://localhost:8080/upload"</span> <span class="attr">method</span>=<span class="string">"post"</span> <span class="attr">enctype</span>=<span class="string">"multipart/form-data"</span>&gt;</span></span><br><span class="line">    用户：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"username"</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    密码：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"password"</span> <span class="attr">name</span>=<span class="string">"password"</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"file"</span> <span class="attr">name</span>=<span class="string">"f1"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"提交"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-对文件数据分隔符的处理"><a href="#2-对文件数据分隔符的处理" class="headerlink" title="2. 对文件数据分隔符的处理"></a>2. 对文件数据分隔符的处理</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//buffer_utils，放node_modules文件夹下</span></span><br><span class="line">exports.bufferSplit=<span class="function"><span class="keyword">function</span> (<span class="params">buffer, delimiter</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> arr=[];</span><br><span class="line">  <span class="keyword">let</span> n=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span>((n=buffer.indexOf(delimiter))!=<span class="number">-1</span>)&#123;</span><br><span class="line">    arr.push(buffer.slice(<span class="number">0</span>, n));</span><br><span class="line">    buffer=buffer.slice(n+delimiter.length);</span><br><span class="line">  &#125;</span><br><span class="line">  arr.push(buffer);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> arr;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="3-post的字段和文件上传处理"><a href="#3-post的字段和文件上传处理" class="headerlink" title="3. post的字段和文件上传处理"></a>3. post的字段和文件上传处理</h3><ol>
+<li>获得buffer数据</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>)</span><br><span class="line"><span class="keyword">const</span> util = <span class="built_in">require</span>(<span class="string">'buffer_util'</span>)</span><br><span class="line"><span class="comment">//去node_modules下找</span></span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>)</span><br><span class="line"></span><br><span class="line">http.createServer(<span class="function">(<span class="params">req,res</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="comment">//获得post体</span></span><br><span class="line">    req.on(<span class="string">'data'</span>,buffer=&gt;&#123;</span><br><span class="line">        arr.push(buffer)</span><br><span class="line">    &#125;);</span><br><span class="line">    req.on(<span class="string">'end'</span>,()=&gt;&#123;</span><br><span class="line">        <span class="keyword">let</span> buffer=Buffer.concat(arr);</span><br><span class="line">        <span class="built_in">console</span>.log(buffer.toString())</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//buffer</span></span><br><span class="line">------WebKitFormBoundaryjFPrasCA0xifoAQC</span><br><span class="line">Content-Disposition: form-data; name=<span class="string">"username"</span></span><br><span class="line"></span><br><span class="line">AddJun</span><br><span class="line">------WebKitFormBoundaryjFPrasCA0xifoAQC</span><br><span class="line">Content-Disposition: form-data; name=<span class="string">"password"</span></span><br><span class="line"></span><br><span class="line">Huihui</span><br><span class="line">------WebKitFormBoundaryjFPrasCA0xifoAQC</span><br><span class="line">Content-Disposition: form-data; name=<span class="string">"f1"</span>; filename=<span class="string">"aaa.txt"</span></span><br><span class="line">Content-Type: text/plain</span><br><span class="line"></span><br><span class="line">abcd</span><br><span class="line"><span class="number">1234</span></span><br><span class="line">------WebKitFormBoundaryjFPrasCA0xifoAQC--</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li><p>切分字段的分隔符</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//分割符号从请求头中获取(再加上两个短杠)</span></span><br><span class="line"><span class="comment">//req.headers</span></span><br><span class="line"><span class="comment">/*&#123; host: 'localhost:8080',</span></span><br><span class="line"><span class="comment">  connection: 'keep-alive',</span></span><br><span class="line"><span class="comment">  'content-length': '385',</span></span><br><span class="line"><span class="comment">  'cache-control': 'max-age=0',</span></span><br><span class="line"><span class="comment">  'upgrade-insecure-requests': '1',</span></span><br><span class="line"><span class="comment">  origin: 'null',</span></span><br><span class="line"><span class="comment">  'content-type': 'multipart/form-data; boundary=----WebKitFormBoundaryjFPrasCA0xifoAQC',</span></span><br><span class="line"><span class="comment">  'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36',</span></span><br><span class="line"><span class="comment">  accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/</span>*;q=<span class="number">0.8</span>,application/signed-exchange;v=b3<span class="string">',</span></span><br><span class="line"><span class="string">  '</span>accept-encoding<span class="string">': '</span>gzip, deflate, br<span class="string">',</span></span><br><span class="line"><span class="string">  '</span>accept-language<span class="string">': '</span>zh-CN,zh;q=<span class="number">0.9</span>,en;q=<span class="number">0.8</span><span class="string">' &#125;*/</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">let boundary = '</span>--<span class="string">' + req.headers['</span>content-type<span class="string">'].split('</span>; <span class="string">')[1].split('</span>=<span class="string">')[1];</span></span><br><span class="line"><span class="string">//------WebKitFormBoundaryjFPrasCA0xifoAQC</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>文件与字段数据的差异</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//仔细观察（将换行等价看成'\r\n'字符）上面的buffer可以看出，文件数据多了一个Content-Type: text/plain</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//一致的操作↓↓</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> buffer=Buffer.concat(arr);</span><br><span class="line"></span><br><span class="line"><span class="comment">//1.按照分隔符切分</span></span><br><span class="line"><span class="keyword">let</span> res=util.bufferSplit(buffer, boundary);</span><br><span class="line"></span><br><span class="line">res.pop();</span><br><span class="line">res.shift();</span><br><span class="line"></span><br><span class="line"><span class="comment">//2.每一个处理一下</span></span><br><span class="line">res.forEach(<span class="function"><span class="params">buffer</span>=&gt;</span>&#123;</span><br><span class="line">    buffer=buffer.slice(<span class="number">2</span>, buffer.length<span class="number">-2</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">let</span> n=buffer.indexOf(<span class="string">'\r\n\r\n'</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">let</span> info=buffer.slice(<span class="number">0</span>, n).toString();</span><br><span class="line">    <span class="keyword">let</span> data=buffer.slice(n+<span class="number">4</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(info.indexOf(<span class="string">'\r\n'</span>)!=<span class="number">-1</span>)&#123;</span><br><span class="line">    <span class="comment">//文件</span></span><br><span class="line">    <span class="keyword">let</span> res2=info.split(<span class="string">'\r\n'</span>)[<span class="number">0</span>].split(<span class="string">'; '</span>);</span><br><span class="line">    <span class="keyword">let</span> name=res2[<span class="number">1</span>].split(<span class="string">'='</span>)[<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">let</span> filename=res2[<span class="number">2</span>].split(<span class="string">'='</span>)[<span class="number">1</span>];</span><br><span class="line">    </span><br><span class="line">    name=name.substring(<span class="number">1</span>, name.length<span class="number">-1</span>);</span><br><span class="line">    filename=filename.substring(<span class="number">1</span>, filename.length<span class="number">-1</span>);</span><br><span class="line">    </span><br><span class="line">    fs.writeFile(<span class="string">`upload/<span class="subst">$&#123;filename&#125;</span>`</span>, data, err=&gt;&#123;</span><br><span class="line">      <span class="keyword">if</span>(err)&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(err);</span><br><span class="line">      &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'上传成功'</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="comment">//普通信息</span></span><br><span class="line">    <span class="keyword">let</span> name=info.split(<span class="string">'; '</span>)[<span class="number">1</span>].split(<span class="string">'='</span>)[<span class="number">1</span>];</span><br><span class="line">    name=name.substring(<span class="number">1</span>, name.length<span class="number">-1</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//console.log(name);</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//console.log(data.toString());</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="4-用multiparty模块"><a href="#4-用multiparty模块" class="headerlink" title="4.用multiparty模块"></a>4.用multiparty模块</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http=<span class="built_in">require</span>(<span class="string">'http'</span>);</span><br><span class="line"><span class="keyword">const</span> multiparty=<span class="built_in">require</span>(<span class="string">'multiparty'</span>);</span><br><span class="line"></span><br><span class="line">http.createServer(<span class="function">(<span class="params">req, res</span>)=&gt;</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> form=<span class="keyword">new</span> multiparty.Form(&#123;</span><br><span class="line">    uploadDir: <span class="string">'./upload'</span></span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  form.parse(req);</span><br><span class="line"></span><br><span class="line">  form.on(<span class="string">'field'</span>, (name, value)=&gt;&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'字段：'</span>, name, value);</span><br><span class="line">  &#125;);</span><br><span class="line">  form.on(<span class="string">'file'</span>, (name, file)=&gt;&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'文件：'</span>, name, file);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  form.on(<span class="string">'close'</span>, ()=&gt;&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'表单解析完成'</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;).listen(<span class="number">8080</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//结果</span></span><br><span class="line">字段： username addjun</span><br><span class="line">字段： password huihui</span><br><span class="line">文件： f1 &#123; <span class="attr">fieldName</span>: <span class="string">'f1'</span>,</span><br><span class="line">  originalFilename: <span class="string">'aaa.txt'</span>,</span><br><span class="line">  path: <span class="string">'upload\\rG3_aIhu6PyRIESsdsQ0wkmk.txt'</span>,</span><br><span class="line">  headers:</span><br><span class="line">   &#123; <span class="string">'content-disposition'</span>: <span class="string">'form-data; name="f1"; filename="aaa.txt"'</span>,</span><br><span class="line">     <span class="string">'content-type'</span>: <span class="string">'text/plain'</span> &#125;,</span><br><span class="line">  size: <span class="number">10</span> &#125;</span><br><span class="line">表单解析完成</span><br></pre></td></tr></table></figure>
+<h3 id="5-跨域允许"><a href="#5-跨域允许" class="headerlink" title="5.跨域允许"></a>5.跨域允许</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http=<span class="built_in">require</span>(<span class="string">'http'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> allowOrigin=&#123;</span><br><span class="line">  <span class="string">'http://localhost'</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="string">'http://aaa.com'</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="string">'https://aaa.com'</span>: <span class="literal">true</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">http.createServer(<span class="function">(<span class="params">req, res</span>)=&gt;</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> &#123;origin&#125;=req.headers;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(allowOrigin[origin])&#123;</span><br><span class="line">    res.setHeader(<span class="string">'access-control-allow-origin'</span>, <span class="string">'*'</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  res.write(<span class="string">'&#123;"a": 12, "b": "cxk"&#125;'</span>);</span><br><span class="line">  res.end();</span><br><span class="line">&#125;).listen(<span class="number">8080</span>);</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/24/node的基本数据处理/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -342,62 +477,10 @@
 <li><p>对post的响应</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http=<span class="built_in">require</span>(<span class="string">'http'</span>);</span><br><span class="line"><span class="keyword">const</span> querystring=<span class="built_in">require</span>(<span class="string">'querystring'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> server=http.createServer(<span class="function">(<span class="params">req, res</span>)=&gt;</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> arr=[];</span><br><span class="line">  req.on(<span class="string">'data'</span>, buffer=&gt;&#123;</span><br><span class="line">    arr.push(buffer);</span><br><span class="line">  &#125;);</span><br><span class="line">  req.on(<span class="string">'end'</span>, ()=&gt;&#123;</span><br><span class="line">    <span class="keyword">let</span> buffer=Buffer.concat(arr);</span><br><span class="line">    <span class="comment">//变成字符串，再变成对象</span></span><br><span class="line">    <span class="keyword">let</span> post=querystring.parse(buffer.toString());</span><br><span class="line">    <span class="built_in">console</span>.log(post);<span class="comment">//  &#123; username: '123', password: '321' &#125;</span></span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line">server.listen(<span class="number">8080</span>);</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>整合两种请求<br><code>`</code>js<br>const http=require(‘http’);<br>const url=require(‘url’);<br>const querystring=require(‘querystring’);<br>const fs=require(‘fs’);</p>
+<li><p>整合两种请求</p>
 </li>
 </ol>
-<p>let users={};//从后台拿到所有的用户？</p>
-<p>http.createServer((req, res)=&gt;{<br>  let path=’’, get={}, post={};<br>  //请求方式<br>  if(req.method==’GET’){<br>    let {pathname, query}=url.parse(req.url, true);</p>
-<pre><code>path=pathname;
-get=query;
-complete();
-</code></pre><p>  }else if(req.method==’POST’){<br>    path=req.url;</p>
-<pre><code>let arr=[];
-req.on(&apos;data&apos;, buffer=&gt;{
-  arr.push(buffer);
-});
-req.on(&apos;end&apos;, ()=&gt;{
-  let buffer=Buffer.concat(arr);
-
-  post=querystring.parse(buffer.toString());
-  complete();
-});
-</code></pre><p>  }</p>
-<p>  function complete(){<br>    if(path==’/reg’){<br>      let {username, password}=get;</p>
-<pre><code>  if(users[username]){
-    res.write(JSON.stringify({error: 1, msg: &apos;此用户名已存在&apos;}));
-    res.end();
-  }else{
-    users[username]=password;
-
-    res.write(JSON.stringify({error: 0, msg: &apos;&apos;}));
-    res.end();
-  }
-}else if(path==&apos;/login&apos;){
-  let {username, password}=get;
-
-  if(!users[username]){
-    res.write(JSON.stringify({error: 1, msg: &apos;找不到此用户&apos;}));
-    res.end();
-  }else if(users[username]!=password){
-    res.write(JSON.stringify({error: 1, msg: &apos;密码不对&apos;}));
-    res.end();
-  }else{
-    res.write(JSON.stringify({error: 0, msg: &apos;&apos;}));
-    res.end();
-  }
-}else{
-  fs.readFile(`www${path}`, (err, buffer)=&gt;{
-    if(err){
-      res.writeHeader(404);
-      res.write(&apos;Not Found&apos;);
-      res.end();
-    }else{
-      res.write(buffer);
-      res.end();
-    }
-  });
-}
-</code></pre><p>  }<br>}).listen(8080);</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http=<span class="built_in">require</span>(<span class="string">'http'</span>);</span><br><span class="line"><span class="keyword">const</span> url=<span class="built_in">require</span>(<span class="string">'url'</span>);</span><br><span class="line"><span class="keyword">const</span> querystring=<span class="built_in">require</span>(<span class="string">'querystring'</span>);</span><br><span class="line"><span class="keyword">const</span> fs=<span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> users=&#123;&#125;;<span class="comment">//从后台拿到所有的用户？</span></span><br><span class="line"></span><br><span class="line">http.createServer(<span class="function">(<span class="params">req, res</span>)=&gt;</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> path=<span class="string">''</span>, get=&#123;&#125;, post=&#123;&#125;;</span><br><span class="line">  <span class="comment">//请求方式</span></span><br><span class="line">  <span class="keyword">if</span>(req.method==<span class="string">'GET'</span>)&#123;</span><br><span class="line">    <span class="keyword">let</span> &#123;pathname, query&#125;=url.parse(req.url, <span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">    path=pathname;</span><br><span class="line">    get=query;</span><br><span class="line">    complete();</span><br><span class="line">  &#125;<span class="keyword">else</span> <span class="keyword">if</span>(req.method==<span class="string">'POST'</span>)&#123;</span><br><span class="line">    path=req.url;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> arr=[];</span><br><span class="line">    req.on(<span class="string">'data'</span>, buffer=&gt;&#123;</span><br><span class="line">      arr.push(buffer);</span><br><span class="line">    &#125;);</span><br><span class="line">    req.on(<span class="string">'end'</span>, ()=&gt;&#123;</span><br><span class="line">      <span class="keyword">let</span> buffer=Buffer.concat(arr);</span><br><span class="line"></span><br><span class="line">      post=querystring.parse(buffer.toString());</span><br><span class="line">      complete();</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">complete</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(path==<span class="string">'/reg'</span>)&#123;</span><br><span class="line">      <span class="keyword">let</span> &#123;username, password&#125;=get;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span>(users[username])&#123;</span><br><span class="line">        res.write(<span class="built_in">JSON</span>.stringify(&#123;<span class="attr">error</span>: <span class="number">1</span>, <span class="attr">msg</span>: <span class="string">'此用户名已存在'</span>&#125;));</span><br><span class="line">        res.end();</span><br><span class="line">      &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        users[username]=password;</span><br><span class="line"></span><br><span class="line">        res.write(<span class="built_in">JSON</span>.stringify(&#123;<span class="attr">error</span>: <span class="number">0</span>, <span class="attr">msg</span>: <span class="string">''</span>&#125;));</span><br><span class="line">        res.end();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(path==<span class="string">'/login'</span>)&#123;</span><br><span class="line">      <span class="keyword">let</span> &#123;username, password&#125;=get;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span>(!users[username])&#123;</span><br><span class="line">        res.write(<span class="built_in">JSON</span>.stringify(&#123;<span class="attr">error</span>: <span class="number">1</span>, <span class="attr">msg</span>: <span class="string">'找不到此用户'</span>&#125;));</span><br><span class="line">        res.end();</span><br><span class="line">      &#125;<span class="keyword">else</span> <span class="keyword">if</span>(users[username]!=password)&#123;</span><br><span class="line">        res.write(<span class="built_in">JSON</span>.stringify(&#123;<span class="attr">error</span>: <span class="number">1</span>, <span class="attr">msg</span>: <span class="string">'密码不对'</span>&#125;));</span><br><span class="line">        res.end();</span><br><span class="line">      &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        res.write(<span class="built_in">JSON</span>.stringify(&#123;<span class="attr">error</span>: <span class="number">0</span>, <span class="attr">msg</span>: <span class="string">''</span>&#125;));</span><br><span class="line">        res.end();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">      fs.readFile(<span class="string">`www<span class="subst">$&#123;path&#125;</span>`</span>, (err, buffer)=&gt;&#123;</span><br><span class="line">        <span class="keyword">if</span>(err)&#123;</span><br><span class="line">          res.writeHeader(<span class="number">404</span>);</span><br><span class="line">          res.write(<span class="string">'Not Found'</span>);</span><br><span class="line">          res.end();</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">          res.write(buffer);</span><br><span class="line">          res.end();</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;).listen(<span class="number">8080</span>);</span><br></pre></td></tr></table></figure>
 
           
         
@@ -1541,127 +1624,6 @@ req.on(&apos;end&apos;, ()=&gt;{
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/20/暑假总结/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2018/08/20/暑假总结/" itemprop="url">
-                  暑假总结
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-20T19:32:30+08:00">
-                2018-08-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="暑假总结"><a href="#暑假总结" class="headerlink" title="暑假总结"></a>暑假总结</h1><p>暑假的培训按照计划开始了，真正到了培训的时候，发现跟想象中的环境还是有点偏差，最开始那几天，天气又热，幸好高中三年的艰苦学习环境培养了我，但其实大家伙都一样坚持下来了。<br>最开始还挺有动力的能够八点起床的，日子走着走着就慢慢到迟到时分才赶到了，但是其他人也都是一群压点的家伙哦。<br>培训的内容，在我看来是挺多的，但都很粗浅，毕竟是要靠自己学的东西。讲课基本是翰程讲的，啊耀就一直在外面跑路。或许产品经理就是这样，看来走向管理也不是很轻松嘛。<br>不知道其他工作室的环境是怎么样的，但是听说有些工作室氛围很拘谨，相比之下他们这群家伙倒是玩的很开。每天都相约在休息时间打游戏，这种像小学时候期待放学的心理格外严重，不好。<br>贵工作室方向问题有点严重，后台学前端，设计也学前端，妈耶，有点意思。有时候你自己会想自己作为前端，至少说初衷是前端，真正比别人多了什么东西，想想就好，啧啧。<br>准大三的那批人，失去楠哥，即将失去郁设。想法也别只停留在失去层面上嘛，出国，至少目前在我眼里还是一件很奇妙的事情。未来的孩子们呐，可能都会出国玩玩吧。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1711,7 +1673,7 @@ req.on(&apos;end&apos;, ()=&gt;{
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
